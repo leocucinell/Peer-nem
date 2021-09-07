@@ -76,3 +76,6 @@ Create a map view to show all the events as markers on the global map
 
 ## ERM:
 ![erm image](./public/images/erdImage.png)
+
+## Wire frame:
+![wire frame image](./public/images/wireFrame.png)

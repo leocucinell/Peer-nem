@@ -3,7 +3,30 @@ const mongoose = require("mongoose");
 
 /* SECTION: User schema */
 const eventSchema = new mongoose.Schema({
-
+    title: {
+        type: String,
+        required: [true, "please add an event title"]
+    },
+    description: {
+        type: String,
+        required: [true, "please add an event description"]
+    },
+    imageAddress: {
+        type: String,
+        required: [true, "please add an image address for your event"]
+    },
+    admin: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+    guests: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    public: {
+        type: Boolean
+    },
+    //add the location here once created
 }, {timestamps: true});
 
 /* SECTION: User model */

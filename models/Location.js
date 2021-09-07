@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 /* SECTION: User schema */
 const locationSchema = new mongoose.Schema({
-
+    
 }, {timestamps: true});
 
 /* SECTION: User model */

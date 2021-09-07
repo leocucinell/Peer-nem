@@ -18,6 +18,11 @@ app.use(express.urlencoded({extended:true}));
 /*SECTION: routes */
 app.use("/", auth);
 
+//404 catch-all
+app.get("/*", (req, res, next) => {
+    res.render("404");
+})
+
 /*SECTION: server bind */
 app.listen(PORT, () => {
     console.log(`Application listening on port ${PORT}`);

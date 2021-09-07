@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 4000;
 app.set("view engine", "ejs");
 
 /*SECTION: middleware */
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended:true}));
 
 /*SECTION: routes */

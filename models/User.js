@@ -15,7 +15,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please add a password"]
     },
-    //add home here once created location model
+    home: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Location"
+    }
 }, {timestamps: true});
 
 /* SECTION: User model */

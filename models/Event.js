@@ -26,7 +26,10 @@ const eventSchema = new mongoose.Schema({
     public: {
         type: Boolean
     },
-    //add the location here once created
+    location: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Location"
+    }
 }, {timestamps: true});
 
 /* SECTION: User model */

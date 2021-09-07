@@ -33,7 +33,7 @@ const eventSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 /* SECTION: User model */
-const Event = mongoose.model(eventSchema);
+const Event = mongoose.model("Event", eventSchema);
 
 /* SECTION: export */
 module.exports = Event;

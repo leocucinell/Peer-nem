@@ -19,7 +19,7 @@ const locationSchema = new mongoose.Schema({
 });
 
 /* SECTION: User model */
-const Location = mongoose.model(locationSchema);
+const Location = mongoose.model("Location", locationSchema);
 
 /* SECTION: export */
 module.exports = Location;

@@ -74,6 +74,8 @@ Inside the header partial, add the connecting to the google maps api that will b
 Create filtering by distance from user on the main page.
 Create a map view to show all the events as markers on the global map
 
+## User Flow:
+![user flow image](./public/images/userFlow.png)
 ## ERD:
 ![erm image](./public/images/erdImage.png)
 

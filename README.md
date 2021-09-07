@@ -56,8 +56,6 @@ Connect to mongoose, create a new mongoose.Schema, create a model from the schem
 Import the model inside the index file for use inside our app.
 Retrace steps 3-5 with other schemas you need to create. 
 
-	Other models: {Events}
-
 --Phase 3: Create the controller / users EX(contd…)
 Create an index file where you will export the different controllers you have created as an object.
 Create The auth controller, require express, router = express.Router(), bcrypt, and the user model.

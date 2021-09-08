@@ -53,7 +53,7 @@ router.post("/register", async (req, res, next) => {
         const createdUser = await User.create(newUser);
 
         //return to login
-        return res.render('/auth/Login');
+        return res.render('auth/login');
 
     } catch(error) {
         console.log(error);

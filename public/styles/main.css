@@ -17,7 +17,7 @@
 }
 .form-slides ::-webkit-scrollbar {
   width: 10px;
-  height: 10px;
+  height: auto;
 }
 .form-slides ::-webkit-scrollbar-thumb {
   background: black;
@@ -30,7 +30,7 @@
   scroll-snap-align: start;
   flex-shrink: 0;
   width: 300px;
-  height: 300px;
+  height: auto;
   margin-right: 50px;
   border-radius: 10px;
   background: #eee;

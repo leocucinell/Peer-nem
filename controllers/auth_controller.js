@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const { User } = require("../models");
+const { User, Location } = require("../models");
 const { geoCode } = require("../apis"); //geoCode(params);
 
 /* SECTION: Middleware */
@@ -31,15 +31,18 @@ router.post("/register", async (req, res, next) => {
         req.body.password = hash;
 
         //create a location object based on the req.body.home
-        
+        const {addressNum, streetName, city, state } = req.body
+        const inputLocation = await geoCode(addressNum, streetName, city, state);
         //save it to the database
-        //set the req.body.home as the _id of the location object
+        const createdLocation = await Location.create(inputLocation);
 
-        //create the new user in mongodb
-        const createdUser = await User.create(req.body);
+        //create the new user object to save to mongoDB
+        
+        //const createdUser = await User.create(req.body);
 
         //return to login
-        return res.send("Created a new user!");
+        //return res.send("Created a new user!");
+        return res.send("Currently testing!")
 
     } catch(error) {
         console.log(error);

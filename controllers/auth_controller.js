@@ -32,24 +32,28 @@ router.post("/register", async (req, res, next) => {
 
         //create a location object based on the req.body.home
         const {addressNum, streetName, city, state } = req.body
+        let homeBase = null;
         const inputLocation = await geoCode(addressNum, streetName, city, state);
-        //save it to the database
-        const createdLocation = await Location.create(inputLocation);
+        //if the location already exists, grab the id of that location and use that for the user
+        const foundLocation = await Location.exists({$and:[{latitude:inputLocation.latitude}, {longitude: inputLocation.longitude}]})
+        if(foundLocation){
+            homeBase = await Location.findOne({$and:[{latitude:inputLocation.latitude}, {longitude: inputLocation.longitude}]});
+        } else {
+            homeBase = await Location.create(inputLocation);
+        }
 
         //create the new user object to save to mongoDB
         const newUser = {
             username: req.body.username,
             email: req.body.email,
             password: req.body.password,
-            home: createdLocation._id
+            home: homeBase._id
         }
 
         const createdUser = await User.create(newUser);
-        console.log(createdUser);
 
         //return to login
-        //return res.send("Created a new user!");
-        return res.send("Currently testing!")
+        return res.render('/auth/Login');
 
     } catch(error) {
         console.log(error);

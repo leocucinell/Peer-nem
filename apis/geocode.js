@@ -17,6 +17,6 @@ module.exports = function geoCode(num, street, city, state) {
             longitude: lng,
             address: address
         });
-    })
+    });
     
 }

@@ -96,7 +96,7 @@ router.post("/login", async (req, res, next) => {
         }
 
         //redirect the user to the main page
-        return res.send("Sucessfully logged in!");
+        return res.redirect("/main");
     } catch(error) {
         console.log(error);
         return res.send(error);
@@ -104,8 +104,15 @@ router.post("/login", async (req, res, next) => {
 });
 
 //GET logout
-router.get("/logout", (req, res, next) => {
-    
+router.get("/logout", async (req, res, next) => {
+    //destry the session and return to the splash page
+    try{
+        await req.session.destroy();
+        return res.redirect("/");
+    } catch(err) {
+        console.log(err);
+        return res.send(err)
+    }
 });
 
 /* SECTION: export the router */

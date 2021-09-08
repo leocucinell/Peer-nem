@@ -5,7 +5,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
 /*SECTION: internal modules */
-const { auth } = require("./controllers");
+const { auth, event } = require("./controllers");
 
 /*SECTION: instanced modules */
 const app = express();
@@ -38,6 +38,7 @@ app.use(function (req, res, next) {
 
 /*SECTION: routes */
 app.use("/", auth);
+app.use("/main", event);
 
 //404 catch-all
 app.get("/*", (req, res, next) => {

@@ -72,8 +72,30 @@ router.get("/login", (req, res, next) => {
 });
 
 //POST login
-router.post("/login", (req, res, next) => {
+router.post("/login", async (req, res, next) => {
+    //try/catch
+    try{
+        //check if the user exists
+        const foundUser = User.findOne({email: req.body.email});
+        if(!foundUser){
+            console.log("User does not exist");
+            return res.redirect("/register");
+        }
 
+        //check if the passwords match
+        const passwordsMatch = await bcrypt.compare(req.body.password, foundUser.password);
+        if(!passwordsMatch){
+            return res.redirect("/login");
+        }
+
+        //create the session for the user during the app
+        
+
+        //redirect the user to the main page
+    } catch(error) {
+        console.log(error);
+        return res.send(error);
+    }
 });
 
 //GET logout

@@ -36,9 +36,16 @@ app.use(function (req, res, next) {
     next();
 });
 
+const isAuthenticated = function (req, res, next){
+    if(req.session.currentUser){
+        return next();
+    }
+    return res.redirect("/");
+}
+
 /*SECTION: routes */
 app.use("/", auth);
-app.use("/main", event);
+app.use("/main",isAuthenticated, event);
 
 //404 catch-all
 app.get("/*", (req, res, next) => {

@@ -14,6 +14,11 @@ router.get("/", (req, res, next) => {
     res.render("auth/splash");
 });
 
+//GET register page
+router.get("/register", (req, res, next) => {
+    res.render("auth/register");
+});
+
 //POST register
 router.post("/register", async (req, res, next) => {
     try {
@@ -59,6 +64,11 @@ router.post("/register", async (req, res, next) => {
         console.log(error);
         return res.send(error);
     }
+});
+
+//GET login
+router.get("/login", (req, res, next) => {
+    return res.render("auth/login");
 });
 
 //POST login

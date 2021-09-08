@@ -29,6 +29,12 @@ app.use(
 /*SECTION: middleware */
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended:true}));
+app.use(methodOverride("_method"));
+
+app.use(function (req, res, next) {
+    res.locals.user = req.session.currentUser;
+    next();
+});
 
 /*SECTION: routes */
 app.use("/", auth);

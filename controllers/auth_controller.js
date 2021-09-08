@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const { User } = require("../models");
+const { geoCode } = require("../apis"); //geoCode(params);
 
 /* SECTION: Middleware */
 
@@ -30,6 +31,7 @@ router.post("/register", async (req, res, next) => {
         req.body.password = hash;
 
         //create a location object based on the req.body.home
+        
         //save it to the database
         //set the req.body.home as the _id of the location object
 

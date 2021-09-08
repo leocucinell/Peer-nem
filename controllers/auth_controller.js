@@ -75,23 +75,29 @@ router.get("/login", (req, res, next) => {
 router.post("/login", async (req, res, next) => {
     //try/catch
     try{
-        //check if the user exists
-        const foundUser = User.findOne({email: req.body.email});
+        //check if user exist
+        const foundUser = await User.findOne({username: req.body.username});
         if(!foundUser){
-            console.log("User does not exist");
-            return res.redirect("/register");
+            console.log(`user does not exist`)
+            return res.redirect('/register')
         }
 
         //check if the passwords match
-        const passwordsMatch = await bcrypt.compare(req.body.password, foundUser.password);
-        if(!passwordsMatch){
-            return res.redirect("/login");
+        const matchedPassword = await bcrypt.compare(req.body.password,foundUser.password)
+        if(!matchedPassword){
+            //return res.redirect("/register")
+            return res.render("auth/login");
         }
 
         //create the session for the user during the app
-        
+        req.session.currentUser = {
+            id: foundUser._id,
+            username: foundUser.username,
+            email: foundUser.email,
+        }
 
         //redirect the user to the main page
+        return res.send("Sucessfully logged in!");
     } catch(error) {
         console.log(error);
         return res.send(error);

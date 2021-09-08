@@ -37,8 +37,15 @@ router.post("/register", async (req, res, next) => {
         const createdLocation = await Location.create(inputLocation);
 
         //create the new user object to save to mongoDB
-        
-        //const createdUser = await User.create(req.body);
+        const newUser = {
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+            home: createdLocation._id
+        }
+
+        const createdUser = await User.create(newUser);
+        console.log(createdUser);
 
         //return to login
         //return res.send("Created a new user!");

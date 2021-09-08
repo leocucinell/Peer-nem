@@ -16,10 +16,8 @@ const userSchema = new mongoose.Schema({
         required: [true, "Please add a password"]
     },
     home: {
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: "Location"
-        type: String,
-        required: [true, "Please provide a home address"]
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Location"
     }
 }, {timestamps: true});
 

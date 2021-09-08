@@ -1,0 +1,17 @@
+.nav-bar___container {
+    width: 100vw;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-bar___list {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin-right: 20px;
+
+    li {
+        margin-right: 10px;
+    }
+}

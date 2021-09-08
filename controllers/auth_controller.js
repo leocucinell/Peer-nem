@@ -85,7 +85,6 @@ router.post("/login", async (req, res, next) => {
         //check if the passwords match
         const matchedPassword = await bcrypt.compare(req.body.password,foundUser.password)
         if(!matchedPassword){
-            //return res.redirect("/register")
             return res.render("auth/login");
         }
 
@@ -106,7 +105,7 @@ router.post("/login", async (req, res, next) => {
 
 //GET logout
 router.get("/logout", (req, res, next) => {
-
+    
 });
 
 /* SECTION: export the router */

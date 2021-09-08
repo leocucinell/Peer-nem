@@ -1,7 +1,9 @@
 <%- include("../partials/header") %>
-<form action="/login" method="POST">
-    <input name="username" placeholder="username" type="text">
-    <input name="password" placeholder="**********" type="password">
-    <button>Submit</button>
-</form>
+<main class="login-form___container">
+    <form class="login-form___form" action="/login" method="POST">
+        <input name="username" placeholder="username" type="text">
+        <input name="password" placeholder="**********" type="password">
+        <button>Submit</button>
+    </form>
+</main>
 <%- include("../partials/footer") %>

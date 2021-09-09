@@ -64,7 +64,7 @@ body {
         scroll-snap-align: start;
         flex-shrink: 0;
         width: 300px;
-        height: auto; //300px;
+        height: 500px;
         margin-right: 50px;
         border-radius: 10px;
         background: rgba(238, 238, 238, 0.9);
@@ -74,11 +74,32 @@ body {
         position: relative;
         
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+
         form {
             display: flex;
             flex-direction: column;
+            width: 80%;
+            gap: 15px;
+            margin-bottom: 10px;
+
+            input{
+                padding: 8px;
+            }
+
+            button{
+                padding: 10px;
+                background-color: transparent;
+                border-radius: 3px;
+                font-size: 1.5em;
+
+                &:hover{
+                    cursor: pointer;
+                    background-color: rgba(255, 255,255, 0.9);
+                }
+            }
         }
     }
 }
@@ -121,5 +142,38 @@ body {
         justify-content: center;
         align-items: center;
         font-size: 100px;
+    }
+}
+
+.button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+
+    .anchor-wrapper{
+        height: 75px;
+        width: 75px;
+        background-color: rgba(238, 238, 238, 0.9);
+        border-radius: 50%;
+        text-align: center;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+            background-color: rgba(220, 220, 220, 0.9);
+            cursor: pointer;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+            width: 100%;
+            height: 100%;
+            padding-top: 28px;
+        }
     }
 }

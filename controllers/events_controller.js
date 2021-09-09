@@ -1,7 +1,7 @@
 /* SECTION: Modules */
 const express = require("express");
 const router = express.Router()
-const { Location } = require("../models");
+const { Location, Event } = require("../models");
 const { geoCode } = require("../apis");
 
 /* SECTION: Middleware */
@@ -25,18 +25,6 @@ router.get("/create", (req, res, next) => {
 
 //POST Create event
 router.post("/create", async (req, res, next) => {
-    /*
-    req.body = {
-        title: 'test event',
-        description: 'test description',
-        image: 'image',
-        access: 'on',
-        addressNum: '19331',
-        streetName: 'alianna loop',
-        city: 'bend',
-        state: 'OR'
-    } 
-    */
     try{
         //check if there is a user session
         if(req.session.currentUser){
@@ -49,8 +37,23 @@ router.post("/create", async (req, res, next) => {
                     {longitude: inputLocation.longitude}
                 ]
             });
-            console.log(foundLocation);
+            if(!foundLocation){
+                foundLocation = await Location.create(inputLocation);
+            }
             //create the object that will go into a new event object
+            const newEvent = {
+                title: req.body.title,
+                description: req.body.description,
+                imageAddress: req.body.image,
+                admin: req.session.currentUser.id,
+                public: req.body.access == "on" ? true : false,
+                location: foundLocation
+            }
+
+            const createdEvent = await Event.create(newEvent);
+            res.send(createdEvent);
+        } else {
+            res.redirect("/");
         }
         
     } catch(err){

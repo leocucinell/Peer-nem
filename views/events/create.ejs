@@ -1,8 +1,22 @@
 <%- include("../partials/header") %>
 
 <%- include("../partials/navbar") %>
- <form>
-     
- </form>
+<main>
+    <form method="POST" action="/main/create">
+        <input placeholder="event title" name="title" type="text">
+        <input placeholder="description" name="description" type="text">
+        <input placeholder="image address" name="image" type="text">
+        <input name="access" type="checkbox">
+    
+        <h3>Location:</h3>
+        <input placeholder="address number" name="addressNum" type="number">
+        <input placeholder="street name" name="streetName" type="text">
+        <input placeholder="city" name="city" type="text">
+        <input placeholder="state: OR, CA, NV, ..." name="state" type="text">
+    
+        <button>Submit</button>
+    </form>
+</main>
+
 
 <%- include("../partials/footer") %>

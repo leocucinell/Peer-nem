@@ -1,11 +1,13 @@
 * {
   box-sizing: border-box;
   overflow: hidden;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
   height: 100vh;
   width: 100vw;
+  margin-left: 0;
 }
 
 .splash-view___container {
@@ -143,6 +145,10 @@ body {
   flex-direction: row;
   border-bottom: 1px solid black;
 }
+.nav-bar___container h1 {
+  margin-left: 2vw;
+  margin-top: 25px;
+}
 
 .nav-bar___list {
   display: flex;
@@ -150,6 +156,7 @@ body {
   list-style-type: none;
   margin-right: 20px;
   padding: 10px;
+  margin-top: 20px;
 }
 .nav-bar___list li {
   margin-right: 10px;

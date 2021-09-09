@@ -1,8 +1,10 @@
 *{
     box-sizing: border-box;
+    overflow: hidden;
 }
 body {
     height: 100vh;
+    width: 100vw;
 }
 
 .splash-view___container{
@@ -31,7 +33,7 @@ body {
 
 .form-slides{
     display: flex;
-    overflow-x: auto;
+    overflow-x: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
@@ -75,7 +77,7 @@ body {
 
 .image-slides {
     display: flex;
-    overflow-x: auto;
+    overflow-x: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;

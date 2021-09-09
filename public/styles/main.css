@@ -1,9 +1,11 @@
 * {
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 body {
   height: 100vh;
+  width: 100vw;
 }
 
 .splash-view___container {
@@ -35,7 +37,7 @@ body {
 
 .form-slides {
   display: flex;
-  overflow-x: auto;
+  overflow-x: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -74,7 +76,7 @@ body {
 
 .image-slides {
   display: flex;
-  overflow-x: auto;
+  overflow-x: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -139,6 +141,7 @@ body {
   justify-content: space-between;
   display: flex;
   flex-direction: row;
+  border-bottom: 1px solid black;
 }
 
 .nav-bar___list {
@@ -146,6 +149,7 @@ body {
   flex-direction: row;
   list-style-type: none;
   margin-right: 20px;
+  padding: 10px;
 }
 .nav-bar___list li {
   margin-right: 10px;

@@ -45,7 +45,7 @@ const isAuthenticated = function (req, res, next){
 
 /*SECTION: routes */
 app.use("/", auth);
-app.use("/main",isAuthenticated, event);
+app.use("/main", isAuthenticated, event);
 
 //404 catch-all
 app.get("/*", (req, res, next) => {

@@ -5,7 +5,7 @@ const router = express.Router()
 
 /* SECTION: routes */
 router.get("/", (req, res, next) => {
-    res.send("Hello from the /main route!")
+    res.render("main/main");
 })
 /* SECTION: export the router */
 module.exports = router;

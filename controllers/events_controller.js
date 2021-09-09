@@ -31,7 +31,7 @@ router.post("/create", async (req, res, next) => {
             //geocode the location
             const inputLocation = await geoCode(req.body.addressNum, req.body.streetName, req.body.city, req.body.state);
             //check if there is a location with the same coordinates ? use the created one : create a new location obj
-            const foundLocation = await Location.findOne({
+            let foundLocation = await Location.findOne({
                 $and: [
                     {latitude: inputLocation.latitude},
                     {longitude: inputLocation.longitude}
@@ -51,7 +51,7 @@ router.post("/create", async (req, res, next) => {
             }
 
             const createdEvent = await Event.create(newEvent);
-            res.send(createdEvent);
+            res.redirect("/main/profile")
         } else {
             res.redirect("/");
         }

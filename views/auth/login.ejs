@@ -1,9 +1,14 @@
 <%- include("../partials/header") %>
 <main class="login-form___container">
-    <form class="login-form___form" action="/login" method="POST">
-        <input name="username" placeholder="username" type="text">
-        <input name="password" placeholder="**********" type="password">
-        <button>Submit</button>
-    </form>
+    <div class="form-slides">
+        <div class="form-login">
+            <h1>Login</h1>
+            <form class="login-form___form" action="/login" method="POST">
+                <input name="username" placeholder="username" type="text">
+                <input name="password" placeholder="**********" type="password">
+                <button>Submit</button>
+            </form>
+        </div>
+    </div>
 </main>
 <%- include("../partials/footer") %>

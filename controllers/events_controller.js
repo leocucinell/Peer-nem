@@ -90,7 +90,8 @@ router.get("/edit/:id", async (req, res, next) => {
     try{
         const eventInfo = await Event.findById(req.params.id);
         const address = parseAddress(eventInfo.address);
-        
+        console.log(address)
+
         return res.render("events/edit", {
             event: eventInfo
         });

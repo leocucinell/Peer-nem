@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const { User, Location } = require("../models");
+const { User } = require("../models");
 const { geoCode } = require("../apis"); //geoCode(params);
 
 /* SECTION: Middleware */
@@ -27,7 +27,7 @@ router.post("/register", async (req, res, next) => {
         if(foundUser){
             //MAKE A ROUTE SPECIFICALLY FOR LOGGING IN / REGISTERING FOR ERROR HANDLING PURPOSES
             console.log("User already exists");
-            return res.render("auth/splash"); //I would redirect to a specific register page for the error purpose
+            return res.render("auth/login");
         }
 
         //if user does not exist, salt&hash the password and [redirect to login splash || go to main page]
@@ -37,22 +37,23 @@ router.post("/register", async (req, res, next) => {
 
         //create a location object based on the req.body.home
         const {addressNum, streetName, city, state } = req.body
-        let homeBase = null;
-        const inputLocation = await geoCode(addressNum, streetName, city, state);
+        const inputLocation = await geoCode(addressNum, streetName, city, state); // -> {lat, lng, address}
         //if the location already exists, grab the id of that location and use that for the user
-        const foundLocation = await Location.exists({$and:[{latitude:inputLocation.latitude}, {longitude: inputLocation.longitude}]})
-        if(foundLocation){
-            homeBase = await Location.findOne({$and:[{latitude:inputLocation.latitude}, {longitude: inputLocation.longitude}]});
-        } else {
-            homeBase = await Location.create(inputLocation);
-        }
+        // const foundLocation = await Location.exists({$and:[{latitude:inputLocation.latitude}, {longitude: inputLocation.longitude}]})
+        // if(foundLocation){
+        //     homeBase = await Location.findOne({$and:[{latitude:inputLocation.latitude}, {longitude: inputLocation.longitude}]});
+        // } else {
+        //     homeBase = await Location.create(inputLocation);
+        // }
 
         //create the new user object to save to mongoDB
         const newUser = {
             username: req.body.username,
             email: req.body.email,
             password: req.body.password,
-            home: homeBase._id
+            latitude: inputLocation.latitude,
+            longitude: inputLocation.longitude,
+            address: inputLocation.address
         }
 
         const createdUser = await User.create(newUser);

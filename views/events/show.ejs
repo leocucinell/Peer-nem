@@ -8,7 +8,7 @@
  -->
 <%if(event){%>
     <h1><%= event.title %></h1>
-    <img alt="evet photo" src="<%= event.imageAddress %>">
+    <img alt="event photo" src="<%= event.imageAddress %>">
     <p><%= event.description %></p>
     <% if(user.username === eventAdmin.username){ %>
         <a href="/main/edit/<%= event._id %>">edit event</a>

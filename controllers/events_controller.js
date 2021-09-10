@@ -1,7 +1,7 @@
 /* SECTION: Modules */
 const express = require("express");
 const router = express.Router()
-const { Location, Event, User } = require("../models");
+const { Event, User } = require("../models");
 const { geoCode, distanceCheck } = require("../apis");
 
 /* SECTION: Middleware */
@@ -60,15 +60,15 @@ router.post("/create", async (req, res, next) => {
             //geocode the location
             const inputLocation = await geoCode(req.body.addressNum, req.body.streetName, req.body.city, req.body.state);
             //check if there is a location with the same coordinates ? use the created one : create a new location obj
-            let foundLocation = await Location.findOne({
-                $and: [
-                    {latitude: inputLocation.latitude},
-                    {longitude: inputLocation.longitude}
-                ]
-            });
-            if(!foundLocation){
-                foundLocation = await Location.create(inputLocation);
-            }
+            // let foundLocation = await Location.findOne({
+            //     $and: [
+            //         {latitude: inputLocation.latitude},
+            //         {longitude: inputLocation.longitude}
+            //     ]
+            // });
+            // if(!foundLocation){
+            //     foundLocation = await Location.create(inputLocation);
+            // }
             //create the object that will go into a new event object
             const newEvent = {
                 title: req.body.title,
@@ -76,7 +76,9 @@ router.post("/create", async (req, res, next) => {
                 imageAddress: req.body.image,
                 admin: req.session.currentUser.id,
                 public: req.body.access == "on" ? true : false,
-                location: foundLocation
+                latitude: inputLocation.latitude,
+                longitude: inputLocation.longitude,
+                address: inputLocation.address
             }
 
             const createdEvent = await Event.create(newEvent);
@@ -111,11 +113,8 @@ router.get("/edit/:id", async (req, res, next) => {
     //send it to the update form & place the values in ejs
     try{
         const eventInfo = await Event.findById(req.params.id);
-        const eventLocation = await Location.findById(eventInfo.location); //TODO: update this when refactoring location info 
-        console.log(eventLocation);
         return res.render("events/edit", {
-            event: eventInfo,
-            location: eventLocation
+            event: eventInfo
         });
     } catch(err) {
         console.log(err);

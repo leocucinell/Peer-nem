@@ -15,10 +15,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please add a password"]
     },
-    home: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Location"
-    }
+    latitude: {
+        type: Number,
+        required: [true, "please add the latitude for the event"]
+    },
+    longitude: {
+        type: Number,
+        required: [true, "please add the longitude for the event"]
+    },
+    address: {
+        type: String,
+        required: [true, "please add an address for the event"]
+    },
 }, {timestamps: true});
 
 /* SECTION: User model */

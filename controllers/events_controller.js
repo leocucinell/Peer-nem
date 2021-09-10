@@ -101,7 +101,7 @@ router.get("/edit/:id", async (req, res, next) => {
     }
 })
 
-//POST Edit event route
+//PUT Edit event route
 router.put("/edit/:id", async (req, res, next) => {
     try{
         const updatedEvent = await Event.findByIdAndUpdate(
@@ -119,6 +119,17 @@ router.put("/edit/:id", async (req, res, next) => {
         res.send(err);
     }
 });
+
+//DELETE Event route
+router.delete("/edit/:id", async (req, res, next) => {
+    try{
+        const deletedEvent = await Event.findByIdAndDelete(req.params.id);
+        return res.redirect("/main");
+    } catch(err){
+        console.log(err);
+        res.send(err);
+    }
+})
 
 /* SECTION: export the router */
 module.exports = router;

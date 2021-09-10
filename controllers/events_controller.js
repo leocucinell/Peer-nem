@@ -54,6 +54,7 @@ router.get("/create", (req, res, next) => {
 //POST Create event
 router.post("/create", async (req, res, next) => {
     try{
+        //TODO: Update this route to ignore duplicate locations WHEN REFACTOR
         //check if there is a user session
         if(req.session.currentUser){
             //geocode the location
@@ -100,6 +101,23 @@ router.get("/show/:id", async (req, res, next) => {
         res.render("events/show", {event: clickedEvent, eventAdmin: adminCreator});
     } catch(err) {
         console.log(err)
+        res.send(err);
+    }
+});
+
+//GET Edit event route
+router.get("/edit/:id", async (req, res, next) => {
+    //get the information from the event,
+    //send it to the update form & place the values in ejs
+    try{
+        const eventInfo = await Event.findById(req.params.id);
+        const eventLocation = await Location.findById(eventInfo.location); //TODO: update this when refactoring location info 
+        return res.render("events/edit", {
+            event: eventInfo,
+            location: eventLocation
+        });
+    } catch(err) {
+        console.log(err);
         res.send(err);
     }
 })

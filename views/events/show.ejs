@@ -11,7 +11,7 @@
     <img alt="evet photo" src="<%= event.imageAddress %>">
     <p><%= event.description %></p>
     <% if(user.username === eventAdmin.username){ %>
-        <a href="#">edit event</a>
+        <a href="/main/edit/<%= event._id %>">edit event</a>
     <%} else {%>
         <p>Not admin user</p>
     <%}%>

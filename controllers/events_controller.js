@@ -101,5 +101,24 @@ router.get("/edit/:id", async (req, res, next) => {
     }
 })
 
+//POST Edit event route
+router.put("/edit/:id", async (req, res, next) => {
+    try{
+        const updatedEvent = await Event.findByIdAndUpdate(
+            req.params.id, 
+            {
+                $set: req.body,
+            }, 
+            {
+                new: true,
+            }
+        );
+        return res.redirect(`/main/show/${updatedEvent.id}`)
+    } catch(err) {
+        console.log(err);
+        res.send(err);
+    }
+});
+
 /* SECTION: export the router */
 module.exports = router;

@@ -2,7 +2,7 @@
 
 <%- include("../partials/navbar") %>
 <main>
-    <form method="POST" action="/main/create">
+    <form method="POST" action="/main/edit/<%= event._id %>?_method=PUT">
         <input value="<%= event.title %>" placeholder="event title" name="title" type="text">
         <input value="<%= event.description %>" placeholder="description" name="description" type="text">
         <input value="<%= event.imageAddress %>" placeholder="image address" name="image" type="text">
@@ -14,7 +14,7 @@
         <input value="<%= eventAddress.city %>" placeholder="city" name="city" type="text">
         <input value="<%= eventAddress.state %>" placeholder="state: OR, CA, NV, ..." name="state" type="text">
     
-        <button>Submit</button>
+        <input type="submit" value="Update">
     </form>
 </main>
 

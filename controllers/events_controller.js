@@ -9,17 +9,23 @@ const { geoCode, distanceCheck } = require("../apis");
 /* SECTION: routes -> /main */
 //GET main page
 router.get("/", async (req, res, next) => {
-    //get all the information from the events, filter for coordinates near home base
-    const allEvents = await Event.find();
-    const userObj = await User.findById(req.session.currentUser.id);
-    const userLocation = await Location.findById(userObj.home)
-    const userCoords = {
-        lat: userLocation.latitude,
-        lng: userLocation.longitude,
-    }
-    const nearMe = distanceCheck(allEvents, userCoords);
+    try{
+        //get all the information from the events, filter for coordinates near home base
+        const allEvents = await Event.find();
+        const userObj = await User.findById(req.session.currentUser.id);
+        const userLocation = await Location.findById(userObj.home)
+        const userCoords = {
+            lat: userLocation.latitude,
+            lng: userLocation.longitude,
+        }
+        const nearMe = await distanceCheck(allEvents, userCoords);
+        console.log(nearMe);
 
-    res.render("events/main");
+        res.render("events/main");
+    } catch(err) {
+        console.log(err);
+        res.send(err);
+    }
 });
 
 

@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router()
 const { Event, User } = require("../models");
-const { geoCode, distanceCheck } = require("../apis");
+const { geoCode, distanceCheck, parseAddress } = require("../apis");
 
 /* SECTION: Middleware */
 
@@ -89,6 +89,8 @@ router.get("/edit/:id", async (req, res, next) => {
     //send it to the update form & place the values in ejs
     try{
         const eventInfo = await Event.findById(req.params.id);
+        const address = parseAddress(eventInfo.address);
+        
         return res.render("events/edit", {
             event: eventInfo
         });

@@ -23,11 +23,9 @@ function distanceCalculator(eLat, eLng, hLat, hLng){
 }
 
 const distanceCheck = (events, homeBase) => {
-    console.log("~~~DISTANCE CHECK~~~")
     let withinRange = []
     events.forEach(event => {
         if(distanceCalculator(event.latitude, event.longitude, homeBase.lat, homeBase.lng)){
-            console.log("PUSHING TO withinRange")
             withinRange.push(event);
         }
     });

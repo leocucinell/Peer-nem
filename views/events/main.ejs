@@ -8,8 +8,20 @@
         -list of private events
  -->
 <%if(allEvents){%>
-    <p><%= allEvents %></p>
+    <div class="public-events___container">
+        <%allEvents.forEach((event) => {%>
+            <a href="#">
+                <article class="event-card">
+                    <img src=`${event.image}` alt="event photo">
+                    <h3><%= event.title %></h3>
+                    <p><%= event.description %></p>
+                </article>
+            </a>
+        <%})%>
+    </div>
 <%} else {%>
-    <p>No events found!</p>
+    <h1>No events found!</h1>
 <%}%>
+
+
 <%- include("../partials/footer") %>

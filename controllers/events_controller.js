@@ -23,11 +23,9 @@ router.get("/", async (req, res, next) => {
 
         const nearMe = distanceCheck(allEvents, userCoords).then(obj => {return obj});
         nearMe.then((events) => {
-            console.log("NEARME OBJECT+++++")
-            console.log(events);
+            res.render("events/main", {allEvents: events});
         });
         
-        res.render("events/main", {allEvents: []});
     } catch(err) {
         console.log(err);
         res.send(err);

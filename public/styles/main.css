@@ -214,4 +214,14 @@ body {
   margin-right: 10px;
 }
 
+.public-events___container {
+  margin: 8px 5px 8px 5px;
+}
+
+.event-card {
+  background-color: rgba(238, 238, 238, 0.9);
+  border: 1px solid black;
+  margin-bottom: 5px;
+}
+
 /*# sourceMappingURL=main.css.map */

@@ -35,14 +35,19 @@ const getEventsInRange =  function(events, homeBase){
         let eventLocal = findLocation(event.location);
         let success = false;
         eventLocal.then(function(eventLocation) {
-            console.log(eventLocation)
             //eventLocation is the correct location object!!!
             if(distanceCalculator(eventLocation.latitude, eventLocation.longitude, homeBase.lat, homeBase.lng)){
+                //returns true if withinrange
                 success = true;
             };
+            console.log("INSIDE EVENTLOCAL.THEN");
+            console.log(success);
         });
-        return true;
+        console.log("INSIDE TOP LAYER")
+        console.log(success);
+        return true;   //ANOTHER BUG: JUST REFACTOR THIS WEEKEND!
     });
+    console.log("EVENT FILTER LIST")
     console.log(eventFilter);
     return eventFilter;
 }
@@ -55,7 +60,6 @@ const getList = async function(events, homeBase){
 
 const distanceCheck = (events, homeBase) => {
     return getList(events, homeBase).then(event => {
-        console.log(event);
         return event
     });
 }

@@ -16,6 +16,7 @@ function distanceCalculator(eLat, eLng, hLat, hLng){
     const d = R * c; // Distance in km
     const miles = d / 1.60934; //distance in miles
     //have the distance radius be 50 miles
+    console.log(miles);
     if(miles < 50){
         return true
     } else {
@@ -25,14 +26,28 @@ function distanceCalculator(eLat, eLng, hLat, hLng){
 
 
 const distanceCheck = (events, homeBase) => {
-    let eventsInRange = []
-    events.forEach(async (event) =>  {
+    let eventsInRange = events.map(async (event) => {
         //get the event location & pass to distanceCalculator function
-        const eventLocation = await Location.findById(event.location);
-        if(distanceCalculator(eventLocation.latitude, eventLocation.longitude, homeBase.lat, homeBase.lng)){
-            eventsInRange.push(event);
-        };
-    });
+        try{
+            let eventLocation = await Location.findById(event.location)
+                // .then(() => {
+                
+                // });
+                console.log("EVENT LOCATION+++++++")
+                console.log(eventLocation);
+                if(distanceCalculator(eventLocation.latitude, eventLocation.longitude, homeBase.lat, homeBase.lng)){
+                    console.log("Inside distance check");
+                    return Promise.resolve(event);
+                };
+        }catch(err){
+            console.log(err);
+        }
+    })
+    // events.forEach(async (event) =>  {
+        
+    // });
+    // console.log("Inside distance Check")
+    console.log("==============")
     console.log(eventsInRange);
     return eventsInRange;
 }

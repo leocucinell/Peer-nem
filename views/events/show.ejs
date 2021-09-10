@@ -6,6 +6,15 @@
         -navbar
         -all information reguarding the event
  -->
-
+<%if(event){%>
+    <h1><%= event.title %></h1>
+    <img alt="evet photo" src="<%= event.imageAddress %>">
+    <p><%= event.description %></p>
+    <% if(user.username === eventAdmin.username){ %>
+        <a href="#">edit event</a>
+    <%} else {%>
+        <p>Not admin user</p>
+    <%}%>
+<%}%>
 
 <%- include("../partials/footer") %>

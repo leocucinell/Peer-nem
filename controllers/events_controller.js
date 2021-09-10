@@ -11,33 +11,33 @@ const { geoCode, distanceCheck } = require("../apis");
 router.get("/", async (req, res, next) => {
     //Reimplement this code once the distance check works out!
 
-    try{
-        //get all the information from the events, filter for coordinates near home base
-        const allEvents = await Event.find();
-        const userObj = await User.findById(req.session.currentUser.id);
-        const userLocation = await Location.findById(userObj.home)
-        const userCoords = {
-            lat: userLocation.latitude,
-            lng: userLocation.longitude,
-        }
-
-        const nearMe = distanceCheck(allEvents, userCoords).then(obj => {return obj});
-        nearMe.then((events) => {
-            res.render("events/main", {allEvents: events});
-        });
-        
-    } catch(err) {
-        console.log(err);
-        res.send(err);
-    }
-
     // try{
+    //     //get all the information from the events, filter for coordinates near home base
     //     const allEvents = await Event.find();
-    //     res.render("events/main", {allEvents})
+    //     const userObj = await User.findById(req.session.currentUser.id);
+    //     const userLocation = await Location.findById(userObj.home)
+    //     const userCoords = {
+    //         lat: userLocation.latitude,
+    //         lng: userLocation.longitude,
+    //     }
+
+    //     const nearMe = distanceCheck(allEvents, userCoords).then(obj => {return obj});
+    //     nearMe.then((events) => {
+    //         res.render("events/main", {allEvents: events});
+    //     });
+        
     // } catch(err) {
-    //     console.log(err)
+    //     console.log(err);
     //     res.send(err);
     // }
+
+    try{
+        const allEvents = await Event.find();
+        return res.render("events/main", {allEvents});
+    } catch(err) {
+        console.log(err)
+        res.send(err);
+    }
 });
 
 
@@ -89,8 +89,20 @@ router.post("/create", async (req, res, next) => {
         res.send(err);
     }
     
-
 });
+
+//GET Event show page
+router.get("/show/:id", async (req, res, next) => {
+    //grab the event the user wants to see
+    try {
+        const clickedEvent = await Event.findById(req.params.id);
+        const adminCreator = await User.findById(clickedEvent.admin);
+        res.render("events/show", {event: clickedEvent, eventAdmin: adminCreator});
+    } catch(err) {
+        console.log(err)
+        res.send(err);
+    }
+})
 
 /* SECTION: export the router */
 module.exports = router;

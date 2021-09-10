@@ -10,9 +10,9 @@
 <%if(allEvents){%>
     <div class="public-events___container">
         <%allEvents.forEach((event) => {%>
-            <a href="#">
+            <a href="/main/show/<%= event._id %>">
                 <article class="event-card">
-                    <img src=`${event.image}` alt="event photo">
+                    <img src="<%= event.image %>" alt="event photo">
                     <h3><%= event.title %></h3>
                     <p><%= event.description %></p>
                 </article>

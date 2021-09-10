@@ -58,7 +58,7 @@ router.post("/create", async (req, res, next) => {
             }
 
             const createdEvent = await Event.create(newEvent);
-            res.redirect("/main/profile")
+            res.redirect(`/main/show/${createdEvent.id}`)
         } else {
             res.redirect("/");
         }

@@ -9,27 +9,37 @@ const { geoCode, distanceCheck } = require("../apis");
 /* SECTION: routes -> /main */
 //GET main page
 router.get("/", async (req, res, next) => {
-    console.log("")
+    //Reimplement this code once the distance check works out!
+
     try{
         //get all the information from the events, filter for coordinates near home base
         const allEvents = await Event.find();
-        console.log(allEvents);
-        console.log("-------------------------")
         const userObj = await User.findById(req.session.currentUser.id);
         const userLocation = await Location.findById(userObj.home)
         const userCoords = {
             lat: userLocation.latitude,
             lng: userLocation.longitude,
         }
-        const nearMe = distanceCheck(allEvents, userCoords);
-        console.log("NEARME OBJECT+++++")
-        console.log(nearMe);
 
-        res.render("events/main");
+        const nearMe = distanceCheck(allEvents, userCoords).then(obj => {return obj});
+        nearMe.then((events) => {
+            console.log("NEARME OBJECT+++++")
+            console.log(events);
+        });
+        
+        res.render("events/main", {allEvents: []});
     } catch(err) {
         console.log(err);
         res.send(err);
     }
+
+    // try{
+    //     const allEvents = await Event.find();
+    //     res.render("events/main", {allEvents})
+    // } catch(err) {
+    //     console.log(err)
+    //     res.send(err);
+    // }
 });
 
 

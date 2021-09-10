@@ -15,8 +15,8 @@ function distanceCalculator(eLat, eLng, hLat, hLng){
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     const d = R * c; // Distance in km
     const miles = d / 1.60934; //distance in miles
+
     //have the distance radius be 50 miles
-    console.log(miles);
     if(miles < 50){
         return true
     } else {
@@ -24,32 +24,40 @@ function distanceCalculator(eLat, eLng, hLat, hLng){
     }
 }
 
+const findLocation = async function(location){
+    //this returns a promise to the location object
+    return await Location.findById(location).then(local => {return local});
+}
+
+
+const getEventsInRange =  function(events, homeBase){
+    const eventFilter = events.filter((event) => {
+        let eventLocal = findLocation(event.location);
+        let success = false;
+        eventLocal.then(function(eventLocation) {
+            console.log(eventLocation)
+            //eventLocation is the correct location object!!!
+            if(distanceCalculator(eventLocation.latitude, eventLocation.longitude, homeBase.lat, homeBase.lng)){
+                success = true;
+            };
+        });
+        return true;
+    });
+    console.log(eventFilter);
+    return eventFilter;
+}
+
+const getList = async function(events, homeBase){
+    let eventsInRange = await getEventsInRange(events, homeBase);
+    return eventsInRange;
+}
+
 
 const distanceCheck = (events, homeBase) => {
-    let eventsInRange = events.map(async (event) => {
-        //get the event location & pass to distanceCalculator function
-        try{
-            let eventLocation = await Location.findById(event.location)
-                // .then(() => {
-                
-                // });
-                console.log("EVENT LOCATION+++++++")
-                console.log(eventLocation);
-                if(distanceCalculator(eventLocation.latitude, eventLocation.longitude, homeBase.lat, homeBase.lng)){
-                    console.log("Inside distance check");
-                    return Promise.resolve(event);
-                };
-        }catch(err){
-            console.log(err);
-        }
-    })
-    // events.forEach(async (event) =>  {
-        
-    // });
-    // console.log("Inside distance Check")
-    console.log("==============")
-    console.log(eventsInRange);
-    return eventsInRange;
+    return getList(events, homeBase).then(event => {
+        console.log(event);
+        return event
+    });
 }
 
 module.exports = distanceCheck;

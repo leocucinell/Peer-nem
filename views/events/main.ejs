@@ -7,6 +7,9 @@
         -list of public events
         -list of private events
  -->
- <h1>Hello from main page</h1>
-
+<%if(allEvents){%>
+    <p><%= allEvents %></p>
+<%} else {%>
+    <p>No events found!</p>
+<%}%>
 <%- include("../partials/footer") %>

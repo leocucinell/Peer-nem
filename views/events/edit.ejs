@@ -9,10 +9,10 @@
         <input value="<%= event.access %>" name="access" type="checkbox">
     
         <h3>Location:</h3>
-        <input placeholder="address number" name="addressNum" type="number">
-        <input placeholder="street name" name="streetName" type="text">
-        <input placeholder="city" name="city" type="text">
-        <input placeholder="state: OR, CA, NV, ..." name="state" type="text">
+        <input value="<%= eventAddress.number %>" placeholder="address number" name="addressNum" type="number">
+        <input value="<%= eventAddress.street %>" placeholder="street name" name="streetName" type="text">
+        <input value="<%= eventAddress.city %>" placeholder="city" name="city" type="text">
+        <input value="<%= eventAddress.state %>" placeholder="state: OR, CA, NV, ..." name="state" type="text">
     
         <button>Submit</button>
     </form>

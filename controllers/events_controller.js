@@ -11,26 +11,6 @@ const { geoCode, distanceCheck } = require("../apis");
 router.get("/", async (req, res, next) => {
     //Reimplement this code once the distance check works out!
 
-    // try{
-    //     //get all the information from the events, filter for coordinates near home base
-    //     const allEvents = await Event.find();
-    //     const userObj = await User.findById(req.session.currentUser.id);
-    //     const userLocation = await Location.findById(userObj.home)
-    //     const userCoords = {
-    //         lat: userLocation.latitude,
-    //         lng: userLocation.longitude,
-    //     }
-
-    //     const nearMe = distanceCheck(allEvents, userCoords).then(obj => {return obj});
-    //     nearMe.then((events) => {
-    //         res.render("events/main", {allEvents: events});
-    //     });
-        
-    // } catch(err) {
-    //     console.log(err);
-    //     res.send(err);
-    // }
-
     try{
         const allEvents = await Event.find();
         const userObj = await User.findById(req.session.currentUser.id);
@@ -39,9 +19,7 @@ router.get("/", async (req, res, next) => {
             lng: userObj.longitude
         }
         const nearMe = distanceCheck(allEvents, userCoords);
-        console.log("NEAR ME !")
-        console.log(nearMe);
-        return res.render("events/main", {allEvents});
+        return res.render("events/main", {allEvents: nearMe});
     } catch(err) {
         console.log(err)
         res.send(err);
@@ -62,21 +40,11 @@ router.get("/create", (req, res, next) => {
 //POST Create event
 router.post("/create", async (req, res, next) => {
     try{
-        //TODO: Update this route to ignore duplicate locations WHEN REFACTOR
         //check if there is a user session
         if(req.session.currentUser){
             //geocode the location
             const inputLocation = await geoCode(req.body.addressNum, req.body.streetName, req.body.city, req.body.state);
-            //check if there is a location with the same coordinates ? use the created one : create a new location obj
-            // let foundLocation = await Location.findOne({
-            //     $and: [
-            //         {latitude: inputLocation.latitude},
-            //         {longitude: inputLocation.longitude}
-            //     ]
-            // });
-            // if(!foundLocation){
-            //     foundLocation = await Location.create(inputLocation);
-            // }
+
             //create the object that will go into a new event object
             const newEvent = {
                 title: req.body.title,

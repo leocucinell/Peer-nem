@@ -4,6 +4,7 @@ function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
 
+//The haversine formula allows the haversine of θ (that is, hav(θ)) to be computed directly from the latitude (represented by φ) and longitude (represented by λ) of the two points:
 function distanceCalculator(eLat, eLng, hLat, hLng){
     //Compute the distance between the two coordinates, 
     //if it is within range, return true, else return false
@@ -32,6 +33,7 @@ const distanceCheck = (events, homeBase) => {
             eventsInRange.push(event);
         };
     });
+    console.log(eventsInRange);
     return eventsInRange;
 }
 

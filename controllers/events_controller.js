@@ -33,6 +33,14 @@ router.get("/", async (req, res, next) => {
 
     try{
         const allEvents = await Event.find();
+        const userObj = await User.findById(req.session.currentUser.id);
+        const userCoords = {
+            lat: userObj.latitude,
+            lng: userObj.longitude
+        }
+        const nearMe = distanceCheck(allEvents, userCoords);
+        console.log("NEAR ME !")
+        console.log(nearMe);
         return res.render("events/main", {allEvents});
     } catch(err) {
         console.log(err)

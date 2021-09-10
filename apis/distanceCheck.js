@@ -1,5 +1,3 @@
-const { Location } = require("../models");
-
 function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
@@ -24,44 +22,16 @@ function distanceCalculator(eLat, eLng, hLat, hLng){
     }
 }
 
-const findLocation = async function(location){
-    //this returns a promise to the location object
-    return await Location.findById(location).then(local => {return local});
-}
-
-
-const getEventsInRange =  function(events, homeBase){
-    const eventFilter = events.filter((event) => {
-        let eventLocal = findLocation(event.location);
-        let success = false;
-        eventLocal.then(function(eventLocation) {
-            //eventLocation is the correct location object!!!
-            if(distanceCalculator(eventLocation.latitude, eventLocation.longitude, homeBase.lat, homeBase.lng)){
-                //returns true if withinrange
-                success = true;
-            };
-            console.log("INSIDE EVENTLOCAL.THEN");
-            console.log(success);
-        });
-        console.log("INSIDE TOP LAYER")
-        console.log(success);
-        return true;   //ANOTHER BUG: JUST REFACTOR THIS WEEKEND!
-    });
-    console.log("EVENT FILTER LIST")
-    console.log(eventFilter);
-    return eventFilter;
-}
-
-const getList = async function(events, homeBase){
-    let eventsInRange = await getEventsInRange(events, homeBase);
-    return eventsInRange;
-}
-
-
 const distanceCheck = (events, homeBase) => {
-    return getList(events, homeBase).then(event => {
-        return event
+    console.log("~~~DISTANCE CHECK~~~")
+    let withinRange = []
+    events.forEach(event => {
+        if(distanceCalculator(event.latitude, event.longitude, homeBase.lat, homeBase.lng)){
+            console.log("PUSHING TO withinRange")
+            withinRange.push(event);
+        }
     });
+    return withinRange;
 }
 
 module.exports = distanceCheck;

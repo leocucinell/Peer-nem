@@ -112,6 +112,7 @@ router.get("/edit/:id", async (req, res, next) => {
     try{
         const eventInfo = await Event.findById(req.params.id);
         const eventLocation = await Location.findById(eventInfo.location); //TODO: update this when refactoring location info 
+        console.log(eventLocation);
         return res.render("events/edit", {
             event: eventInfo,
             location: eventLocation

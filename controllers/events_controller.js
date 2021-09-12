@@ -76,6 +76,7 @@ router.get("/show/:id", async (req, res, next) => {
     try {
         const clickedEvent = await Event.findById(req.params.id);
         const adminCreator = await User.findById(clickedEvent.admin);
+
         res.render("events/show", {event: clickedEvent, eventAdmin: adminCreator});
     } catch(err) {
         console.log(err)

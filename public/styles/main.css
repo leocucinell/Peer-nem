@@ -224,4 +224,34 @@ body {
   margin-bottom: 5px;
 }
 
+.create-form___container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-image: url("/images/download-0.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.create-form___container form {
+  background-color: rgba(238, 238, 238, 0.9);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+.create-form___container form label {
+  margin-top: 5px;
+}
+.create-form___container form input {
+  padding: 8px;
+}
+.create-form___container form textarea {
+  padding: 8px;
+}
+.create-form___container form .addres-form {
+  margin-bottom: 5px;
+}
+
 /*# sourceMappingURL=main.css.map */

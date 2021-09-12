@@ -6,15 +6,28 @@
         -navbar
         -all information reguarding the event
  -->
-<%if(event){%>
-    <h1><%= event.title %></h1>
-    <img alt="event photo" src="<%= event.imageAddress %>">
-    <p><%= event.description %></p>
-    <% if(user.username === eventAdmin.username){ %>
-        <a href="/main/edit/<%= event._id %>">edit event</a>
-    <%} else {%>
-        <p>Not admin user</p>
-    <%}%>
-<%}%>
+ <main class="show-page___container">
+    <%if(event){%>
+        <h1><%= event.title %></h1>
+        <img alt="event photo" src="<%= event.imageAddress %>">
+        <p><%= event.description %></p>
+        <% if(user.username === eventAdmin.username){ %>
+            <a href="/main/edit/<%= event._id %>">edit event</a>
+        <%} else {%>
+            <p>Not admin user</p>
+        <%}%>
 
+        <div style="height: 500px; width: 100%; overflow: visible;" id="map"></div>
+    <%}%>
+ </main>
+
+ <script
+      src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_KEY %>&callback=initMap&libraries=&v=weekly"
+      async
+      defer
+>
+google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.trigger(map, 'resize');
+document.getElementById("map").style.overflow = "visible";
+</script>
 <%- include("../partials/footer") %>

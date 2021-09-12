@@ -1,18 +1,26 @@
 <%- include("../partials/header") %>
 
 <%- include("../partials/navbar") %>
-<main>
+<main class="create-form___container">
     <form method="POST" action="/main/create">
-        <input placeholder="event title" name="title" type="text">
-        <input placeholder="description" name="description" type="text">
-        <input placeholder="image address" name="image" type="text">
-        <input name="access" type="checkbox">
+        <h2>Create an event:</h2>
+        <Label for="title-label">Title:</Label>
+        <input id="title-label" placeholder="event title" name="title" type="text">
+
+        <Label for="description-label">Description:</Label>
+        <textarea id="description-label" placeholder="description" name="description"></textarea>
+
+        <Label for="image-label">Image:</Label>
+        <input id="image-label" placeholder="image address" name="image" type="text">
+
+        <label for="access">Public</label>
+        <input id="access" name="access" type="checkbox">
     
-        <h3>Location:</h3>
-        <input placeholder="address number" name="addressNum" type="number">
-        <input placeholder="street name" name="streetName" type="text">
-        <input placeholder="city" name="city" type="text">
-        <input placeholder="state: OR, CA, NV, ..." name="state" type="text">
+        <h3>Address:</h3>
+        <input class="addres-form" placeholder="address number" name="addressNum" type="number">
+        <input class="addres-form" placeholder="street name" name="streetName" type="text">
+        <input class="addres-form" placeholder="city" name="city" type="text">
+        <input class="addres-form" placeholder="state: OR, CA, NV, ..." name="state" type="text">
     
         <input type="submit" value="Create">
     </form>

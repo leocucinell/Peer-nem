@@ -6,6 +6,19 @@
         -navbar
         -all information reguarding the event
  -->
+ <script>
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: parseInt(document.getElementById("hLat").innerHTML), lng: parseInt(document.getElementById("hLng").innerHTML) },
+        zoom: 12,
+        });
+        new google.maps.Marker({
+        position: { lat: parseInt(document.getElementById("hLat").innerHTML), lng: parseInt(document.getElementById("hLng").innerHTML) },
+        map: map,
+        title: "Event Location"
+        });
+    }
+ </script>
  <main class="show-page___container">
     <%if(event){%>
         <h1><%= event.title %></h1>
@@ -18,6 +31,8 @@
         <%}%>
 
         <div style="height: 500px; width: 100%; overflow: visible;" id="map"></div>
+        <div id="hLat" style="visibility: hidden;"><%= event.latitude %></div>
+        <div id="hLng" style="visibility: hidden;"><%= event.longitude %></div>
     <%}%>
  </main>
 

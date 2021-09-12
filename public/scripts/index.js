@@ -13,15 +13,3 @@ function onPageLoad(){
 }
 
 onPageLoad();
-
-function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 37.4226, lng: -122.0829 },
-      zoom: 12,
-    });
-    new google.maps.Marker({
-      position: { lat: 37.4226, lng: -122.0829 },
-      map: map,
-      title: "Event Location"
-    });
-}

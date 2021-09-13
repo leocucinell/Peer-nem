@@ -19,10 +19,14 @@ const eventSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
+    // guests: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "User",
+    //     required: [false]
+    // }],
     guests: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: [false]
+        username: String,
+        userId: mongoose.Types.ObjectId
     }],
     public: {
         type: Boolean

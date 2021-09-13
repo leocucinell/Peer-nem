@@ -153,7 +153,10 @@ router.post("/show/:id/attend", async (req, res, next) => {
         const eventToAttend = await Event.findById(req.params.id);
         const attendingUser = await User.findById(req.session.currentUser.id);
         
-        eventToAttend.guests.push(attendingUser);
+        eventToAttend.guests.push({
+            username: attendingUser.username,
+            userId: attendingUser._id
+        });
         eventToAttend.save();
 
         attendingUser.attending.push({

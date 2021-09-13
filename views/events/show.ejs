@@ -36,6 +36,12 @@
         <div style="height: 500px; width: 100%; overflow: visible;" id="map"></div>
         <div id="hLat" style="visibility: hidden;"><%= event.latitude %></div>
         <div id="hLng" style="visibility: hidden;"><%= event.longitude %></div>
+
+        <div class="guest-list">
+            <%event.guests.forEach((guest) => {%>
+                <p><%= guest.username %></p>
+            <%})%>
+        </div>
     <%}%>
  </main>
 

@@ -139,7 +139,10 @@ router.post("/show/:id/attend", async (req, res, next) => {
         eventToAttend.guests.push(attendingUser);
         eventToAttend.save();
 
-        return res.send("added User to Guest list!");
+        attendingUser.attending.push(eventToAttend);
+        attendingUser.save();
+
+        return res.render("events/attendSuccess");
     } catch(e){
         console.log(e);
         res.send(e);

@@ -22,12 +22,15 @@
  <main class="show-page___container">
     <%if(event){%>
         <h1><%= event.title %></h1>
-        <!-- <img alt="event photo" src="<%= event.imageAddress %>"> -->  FIXME: See why error is shoing up
+        <!-- <img alt="event photo" src="<%= event.imageAddress %>"> -->  FIXME: See why error is showing up
         <p><%= event.description %></p>
         <% if(user.id === eventAdmin._id.toString()){ %>
             <a href="/main/edit/<%= event._id %>">edit event</a>
         <%} else {%>
-            <p>Not admin user</p>
+            <form action="<%= event._id %>/attend" method="POST" class="will-attend___form">
+                <label for="sign-up___button">Are you interested in attending?</label>
+                <input type="submit" value="sign up" id="sign-up___button">
+            </form>
         <%}%>
 
         <div style="height: 500px; width: 100%; overflow: visible;" id="map"></div>

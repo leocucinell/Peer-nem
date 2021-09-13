@@ -127,6 +127,25 @@ router.get("/show/:id", async (req, res, next) => {
     }
 });
 
+//Post to the attend route
+router.post("/show/:id/attend", async (req, res, next) => {
+    // get the event that the user wants to sign up for
+    // add their user id to the event's guest list
+    //send to a congrats page
+    try {
+        const eventToAttend = await Event.findById(req.params.id);
+        const attendingUser = await User.findById(req.session.currentUser.id);
+
+        eventToAttend.guests.push(attendingUser);
+        eventToAttend.save();
+
+        return res.send("added User to Guest list!");
+    } catch(e){
+        console.log(e);
+        res.send(e);
+    }
+})
+
 //GET Edit event route
 router.get("/edit/:id", async (req, res, next) => {
     //get the information from the event,

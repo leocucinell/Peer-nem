@@ -27,6 +27,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "please add an address for the event"]
     },
+    attending: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Event",
+        required: [false]
+    }
 }, {timestamps: true});
 
 /* SECTION: User model */

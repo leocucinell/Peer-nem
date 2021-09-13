@@ -22,9 +22,9 @@
  <main class="show-page___container">
     <%if(event){%>
         <h1><%= event.title %></h1>
-        <img alt="event photo" src="<%= event.imageAddress %>">
+        <!-- <img alt="event photo" src="<%= event.imageAddress %>"> -->  FIXME: See why error is shoing up
         <p><%= event.description %></p>
-        <% if(user.username === eventAdmin.username){ %>
+        <% if(user.id === eventAdmin._id.toString()){ %>
             <a href="/main/edit/<%= event._id %>">edit event</a>
         <%} else {%>
             <p>Not admin user</p>

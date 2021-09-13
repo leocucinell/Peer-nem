@@ -120,7 +120,6 @@ router.get("/show/:id", async (req, res, next) => {
     try {
         const clickedEvent = await Event.findById(req.params.id);
         const adminCreator = await User.findById(clickedEvent.admin);
-
         res.render("events/show", {event: clickedEvent, eventAdmin: adminCreator});
     } catch(err) {
         console.log(err)
@@ -149,10 +148,22 @@ router.get("/edit/:id", async (req, res, next) => {
 //PUT Edit event route
 router.put("/edit/:id", async (req, res, next) => {
     try{
+
+        const addressFields = {
+            addressNum: req.body.addressNum,
+            streetName: req.body.streetName,
+            city: req.body.city,
+            state: req.body.state
+        }
+        const addressString = buildAddress(addressFields);
+
         const updatedEvent = await Event.findByIdAndUpdate(
             req.params.id, 
             {
-                $set: req.body,
+                title: req.body.title,
+                description: req.body.description,
+                imageAddress: req.body.image,
+                address: addressString
             }, 
             {
                 new: true,

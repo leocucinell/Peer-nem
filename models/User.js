@@ -28,9 +28,9 @@ const userSchema = new mongoose.Schema({
         required: [true, "please add an address for the event"]
     },
     attending: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Event",
-        required: [false]
+        title: String,
+        image: String,
+        eventId: mongoose.Types.ObjectId
     }],
 }, {timestamps: true});
 

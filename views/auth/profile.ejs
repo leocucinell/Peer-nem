@@ -1,8 +1,24 @@
 <%- include("../partials/header") %>
 
 <%- include("../partials/navbar") %>
-<h1>Profile page</h1>
 <a href="/main/create">create event</a>
 <a href="/main/profile/edit/<%= user.id %>">update profile</a>
+
+<div class="events-list">
+    <div class="my-events">
+        <h2>My events</h2>
+        <% adminEvents.forEach(event => { %>
+            <p><%= event.title %></p>
+        <%})%>
+    </div>
+
+    <div class="attending-events">
+        <h2>Attending Events</h2>
+        <% attendingEvents.forEach(event => { %>
+            <p><%= event.title %></p>
+        <%})%>
+    </div>
+
+</div>
 
 <%- include("../partials/footer") %>

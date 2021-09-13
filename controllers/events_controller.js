@@ -1,5 +1,6 @@
 /* SECTION: Modules */
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router()
 const { Event, User } = require("../models");
 const { geoCode, distanceCheck, parseAddress, buildAddress } = require("../apis");
@@ -28,8 +29,24 @@ router.get("/", async (req, res, next) => {
 
 
 //GET Profile page
-router.get("/profile", (req, res, next) => {
-    res.render("auth/profile");
+router.get("/profile", async (req, res, next) => {
+    try{
+        const userObj = await User.findById(req.session.currentUser.id);
+        //get admin events: 
+        const adminEvents = await Event.find({admin: userObj._id});
+        //get the events the user is attending
+        const attendingEvents = userObj.attending;
+        
+        //send info to profile page
+        res.render("auth/profile", {
+            adminEvents,
+            attendingEvents
+        });
+
+    } catch(e) {
+        console.log(e);
+        res.send(e);
+    }
 });
 
 //GET Update profile page
@@ -135,11 +152,15 @@ router.post("/show/:id/attend", async (req, res, next) => {
     try {
         const eventToAttend = await Event.findById(req.params.id);
         const attendingUser = await User.findById(req.session.currentUser.id);
-
+        
         eventToAttend.guests.push(attendingUser);
         eventToAttend.save();
 
-        attendingUser.attending.push(eventToAttend);
+        attendingUser.attending.push({
+            title: eventToAttend.title,
+            image: eventToAttend.imageAddress,
+            eventId: eventToAttend._id
+        });
         attendingUser.save();
 
         return res.render("events/attendSuccess");

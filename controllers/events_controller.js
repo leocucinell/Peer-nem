@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router()
 const { Event, User } = require("../models");
-const { geoCode, distanceCheck, parseAddress } = require("../apis");
+const { geoCode, distanceCheck, parseAddress, buildAddress } = require("../apis");
 
 /* SECTION: Middleware */
 
@@ -48,8 +48,32 @@ router.get("/profile/edit/:id", async (req, res, next) => {
 });
 
 //PUT UpdateProfile route
-router.put("/profile/edit/:id", async(req, res, next) => {
+router.put("/profile/edit/:id", async (req, res, next) => {
+    try{
+        const addressFields = {
+            addressNum: req.body.addressNum,
+            streetName: req.body.streetName,
+            city: req.body.city,
+            state: req.body.state
+        }
+        const addressString = buildAddress(addressFields);
 
+        const updatedUser = await User.findByIdAndUpdate(
+            req.params.id, 
+            {
+                username: req.body.username,
+                email: req.body.email,
+                address: addressString
+            }, 
+            {
+                new: true,
+            }
+        );
+        return res.redirect(`/main/profile/${updatedUser.id}`);
+    } catch(e){
+        console.log(e);
+        res.send(e);
+    }
 });
 
 //GET Create event page

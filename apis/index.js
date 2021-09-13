@@ -1,5 +1,6 @@
 module.exports = {
     geoCode: require("./geocode"),
     distanceCheck: require("./distanceCheck"),
-    parseAddress: require("./parseAddress")
+    parseAddress: require("./parseAddress"),
+    buildAddress: require("./buildAddress")
 }

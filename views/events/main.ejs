@@ -9,15 +9,22 @@
  -->
 <%if(allEvents){%>
     <div class="public-events___container">
+
         <%allEvents.forEach((event) => {%>
             <a href="/main/show/<%= event._id %>">
                 <article class="event-card">
-                    <img src="<%= event.image %>" alt="event photo">
-                    <h3><%= event.title %></h3>
-                    <p><%= event.description %></p>
+
+                    <img src="<%= event.imageAddress %>" alt="event photo">
+
+                    <div class="event-description">
+                        <h1><%= event.title %></h1>
+                        <p><%= event.description %></p>
+                    </div>
+                
                 </article>
             </a>
         <%})%>
+
     </div>
 <%} else {%>
     <h1>No events found!</h1>

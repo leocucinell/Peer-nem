@@ -19,10 +19,12 @@
         });
     }
  </script>
+
+
  <main class="show-page___container">
     <%if(event){%>
         <h1><%= event.title %></h1>
-        <!-- <img alt="event photo" src="<%= event.imageAddress %>"> -->  FIXME: See why error is showing up
+        <!-- <img alt="event photo" src="<%= event.imageAddress %>">  FIXME: See why error is showing up -->
         <p><%= event.description %></p>
         <% if(user.id === eventAdmin._id.toString()){ %>
             <a href="/main/edit/<%= event._id %>">edit event</a>
@@ -45,6 +47,7 @@
     <%}%>
  </main>
 
+
  <script
       src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_KEY %>&callback=initMap&libraries=&v=weekly"
       async
@@ -54,4 +57,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
 google.maps.event.trigger(map, 'resize');
 document.getElementById("map").style.overflow = "visible";
 </script>
+
+
 <%- include("../partials/footer") %>

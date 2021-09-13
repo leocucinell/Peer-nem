@@ -10,8 +10,6 @@ const { geoCode, distanceCheck, parseAddress, buildAddress } = require("../apis"
 /* SECTION: routes -> /main */
 //GET main page
 router.get("/", async (req, res, next) => {
-    //Reimplement this code once the distance check works out!
-
     try{
         const allEvents = await Event.find();
         const userObj = await User.findById(req.session.currentUser.id);

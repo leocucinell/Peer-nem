@@ -32,6 +32,26 @@ router.get("/profile", (req, res, next) => {
     res.render("auth/profile");
 });
 
+//GET Update profile page
+router.get("/profile/edit/:id", async (req, res, next) => {
+    try{
+        const userObj = await User.findById(req.session.currentUser.id);
+        const address = parseAddress(userObj.address);
+        res.render("auth/editProfile", { 
+            data: userObj,
+            address: address
+        });
+    } catch(e) {
+        console.log(e);
+        res.send(e);
+    }
+});
+
+//PUT UpdateProfile route
+router.put("/profile/edit/:id", async(req, res, next) => {
+
+});
+
 //GET Create event page
 router.get("/create", (req, res, next) => {
     res.render("events/create");

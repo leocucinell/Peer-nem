@@ -1,7 +1,7 @@
 @use "../variables" as *;
 *{
     box-sizing: border-box;
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: $Montserrat;
 }
 body {

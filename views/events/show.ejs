@@ -23,23 +23,39 @@
 
  <main class="show-page___container">
     <%if(event){%>
-        <h1><%= event.title %></h1>
-        <!-- <img alt="event photo" src="<%= event.imageAddress %>">  FIXME: See why error is showing up -->
-        <p><%= event.description %></p>
-        <% if(user.id === eventAdmin._id.toString()){ %>
-            <a href="/main/edit/<%= event._id %>">edit event</a>
-        <%} else {%>
-            <form action="<%= event._id %>/attend" method="POST" class="will-attend___form">
-                <label for="sign-up___button">Are you interested in attending?</label>
-                <input type="submit" value="sign up" id="sign-up___button">
-            </form>
-        <%}%>
+        <div class="image-container">
+            <img alt="event photo" src="<%= event.imageAddress %>">
+            <div id="image-gradient">
+                <h1><%= event.title %></h1>
+            </div>
+        </div>
+        
+        <div class="details-container">
+            <h3>Details:</h3>
+            <p><%= event.description %></p>
+        </div>
+        
+        <div class="choices-container">
+            <% if(user.id === eventAdmin._id.toString()){ %>
+                <h4>Admin Settings: <a id="admin-edit" href="/main/edit/<%= event._id %>">edit event</a></h4>
+            <%} else {%>
+                <form action="<%= event._id %>/attend" method="POST" class="will-attend___form">
+                    <label>Click here to sign up</label>
+                    <input type="submit" value="sign up" id="sign-up___button">
+                </form>
+            <%}%>
+        </div>
+        
 
-        <div style="height: 500px; width: 100%; overflow: visible;" id="map"></div>
-        <div id="hLat" style="visibility: hidden;"><%= event.latitude %></div>
-        <div id="hLng" style="visibility: hidden;"><%= event.longitude %></div>
+        <div class="map-container">
+            <div style="height: 500px; width: 100%; overflow: visible;" id="map"></div>
+            <div id="hLat" style="visibility: hidden;"><%= event.latitude %></div>
+            <div id="hLng" style="visibility: hidden;"><%= event.longitude %></div>
+        </div>
+        
 
         <div class="guest-list">
+            <h3>People attending: <%= event.guests.length %></h3>
             <%event.guests.forEach((guest) => {%>
                 <p><%= guest.username %></p>
             <%})%>

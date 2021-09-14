@@ -392,6 +392,21 @@ body {
   place-items: center;
   gap: 20px;
 }
+@media (max-width: 1150px) {
+  .main-page___container .public-events___container {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+@media (max-width: 900px) {
+  .main-page___container .public-events___container {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+@media (max-width: 630px) {
+  .main-page___container .public-events___container {
+    grid-template-columns: repeat(1, auto);
+  }
+}
 .main-page___container .public-events___container .anchor-box {
   -webkit-box-shadow: 5px 7px 10px -4px #000000;
   box-shadow: 5px 7px 10px -4px #000000;

@@ -352,43 +352,52 @@ body {
   transform: translateY(-3px);
 }
 
-.public-events___container {
-  margin: 8px 40px 8px 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.public-events___container a {
-  text-decoration: none;
-}
-
-.event-card {
-  height: 150px;
-  background-color: rgba(238, 238, 238, 0.9);
+.main-page___container .page-title___container {
+  width: 90vw;
+  border-radius: 5px;
   border: 1px solid black;
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: row;
+  -webkit-box-shadow: 5px 7px 10px -4px #000000;
+  box-shadow: 5px 7px 10px -4px #000000;
+  background-color: whitesmoke;
+  margin: 15px 40px 8px 76px;
+  padding-left: 20px;
+}
+.main-page___container .public-events___container {
+  margin: 30px 40px 8px 40px;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  place-items: center;
   gap: 20px;
-  padding: 25px 15px;
-  color: black;
+}
+.main-page___container .public-events___container .anchor-box {
+  -webkit-box-shadow: 5px 7px 10px -4px #000000;
+  box-shadow: 5px 7px 10px -4px #000000;
   text-decoration: none;
-  max-width: 900px;
-  min-width: 900px;
-  overflow-y: hidden;
 }
-@media (max-width: 1000px) {
-  .event-card {
-    min-width: 80vw;
-  }
+.main-page___container .public-events___container .event-card {
+  height: 300px;
+  width: 250px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background: whitesmoke;
 }
-.event-card img {
-  width: 100px;
-  height: 100px;
+.main-page___container .public-events___container .event-card img {
+  width: 100%;
+  height: 150px;
   object-fit: cover;
 }
-.event-card .event-description p {
+.main-page___container .public-events___container .event-card .event-description {
+  padding: 8px;
+}
+.main-page___container .public-events___container .event-card .event-description h1 {
+  margin-top: 5px;
   margin-bottom: 0;
+}
+.main-page___container .public-events___container .event-card .event-description hr {
+  color: gray;
+}
+.main-page___container .public-events___container .event-card .event-description p {
+  font-size: 1.2rem;
 }
 
 .create-form___container {

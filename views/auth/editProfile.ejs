@@ -3,16 +3,17 @@
 <%- include("../partials/navbar") %>
 <main class="edit-profile___container">
     <form class="edit-profile___form" action="/main/profile/edit/<%= data._id %>?_method=PUT" method="POST">
-        <input name="username" placeholder="Username" type="text" value="<%= data.username %>">
-        <input name="email" placeholder="Email" type="text" value="<%= data.email %>">
+        <h2>User Info:</h2>
+        <input class="edit-input" name="username" placeholder="Username" type="text" value="<%= data.username %>">
+        <input class="edit-input" name="email" placeholder="Email" type="text" value="<%= data.email %>">
 
         <h3>Location:</h3>
-        <input value="<%= address.number %>" placeholder="address number" name="addressNum" type="number">
-        <input value="<%= address.street %>" placeholder="street name" name="streetName" type="text">
-        <input value="<%= address.city %>" placeholder="city" name="city" type="text">
-        <input value="<%= address.state %>" placeholder="state: OR, CA, NV, ..." name="state" type="text">
+        <input class="edit-input" value="<%= address.number %>" placeholder="address number" name="addressNum" type="number">
+        <input class="edit-input" value="<%= address.street %>" placeholder="street name" name="streetName" type="text">
+        <input class="edit-input" value="<%= address.city %>" placeholder="city" name="city" type="text">
+        <input class="edit-input" value="<%= address.state %>" placeholder="state: OR, CA, NV, ..." name="state" type="text">
 
-        <input type="submit" value="Update">
+        <input id="submit-btn" type="submit" value="Update">
     </form>
 </main>
 

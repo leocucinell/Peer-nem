@@ -2,6 +2,9 @@
 
 <%- include("../partials/navbar") %>
 <main class="register-form___container">
+    <%if(err){%>
+        <h1 id="err-msg"><%= err %></h1>
+    <%}%>
     <div class="form-slides">
         <div>
             <h1>Register</h1>

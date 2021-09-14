@@ -13,7 +13,7 @@ function fieldCheck(req, res, next){
             if(req.path == "/login"){
                 return res.render("auth/login", { err: "Please fill out all fields or create an account" });
             } else if (req.path == "/register"){
-
+                return res.render("auth/register", { err: "Please fill out all fields to create an account" })
             }
         }
     }

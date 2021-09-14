@@ -34,11 +34,11 @@ router.get("/profile", async (req, res, next) => {
         const adminEvents = await Event.find({admin: userObj._id});
         //get the events the user is attending
         const attendingEvents = userObj.attending;
-        
         //send info to profile page
         res.render("auth/profile", {
             adminEvents,
-            attendingEvents
+            attendingEvents,
+            userObj
         });
 
     } catch(e) {
@@ -144,9 +144,6 @@ router.get("/show/:id", async (req, res, next) => {
 
 //Post to the attend route
 router.post("/show/:id/attend", async (req, res, next) => {
-    // get the event that the user wants to sign up for
-    // add their user id to the event's guest list
-    //send to a congrats page
     try {
         const eventToAttend = await Event.findById(req.params.id);
         const attendingUser = await User.findById(req.session.currentUser.id);

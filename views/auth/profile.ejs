@@ -1,24 +1,45 @@
 <%- include("../partials/header") %>
 
 <%- include("../partials/navbar") %>
-<a href="/main/create">create event</a>
-<a href="/main/profile/edit/<%= user.id %>">update profile</a>
+<main class="user-profile___container">
 
-<div class="events-list">
-    <div class="my-events">
-        <h2>My events</h2>
-        <% adminEvents.forEach(event => { %>
-            <p><%= event.title %></p>
-        <%})%>
+    <div class="user-info">
+        <h2 id="card-title">Your Info:</h2>
+        <div class="user-card">
+            <h3 id="user-name"><%= userObj.username %></h3>
+            <h5 id="user-email"><%= userObj.email %></h5>
+            <h5 id="user-address"><%= userObj.address %></h5>
+        </div>
+        <hr/>
+        <div class="user-options">
+            <a class="option-btn" href="/main/create">create event</a>
+            <a class="option-btn" href="/main/profile/edit/<%= user.id %>">update profile</a>
+        </div>
+    </div>
+    
+    
+    <div class="events-list">
+        <div class="my-events">
+            <h2>My events</h2>
+            <% adminEvents.forEach(event => { %>
+                <div class="my-event___card">
+                    <img src="<%= event.imageAddress %>" alt="event photo">
+                    <p><%= event.title %></p>
+                </div>
+            <%})%>
+        </div>
+    
+        <div class="attending-events">
+            <h2>Attending Events</h2>
+            <% attendingEvents.forEach(event => { %>
+                <div class="my-event___card">
+                    <img src="<%= event.image %>" alt="event photo">
+                    <p><%= event.title %></p>
+                </div>
+            <%})%>
+        </div>
     </div>
 
-    <div class="attending-events">
-        <h2>Attending Events</h2>
-        <% attendingEvents.forEach(event => { %>
-            <p><%= event.title %></p>
-        <%})%>
-    </div>
-
-</div>
+</main>
 
 <%- include("../partials/footer") %>

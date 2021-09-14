@@ -325,17 +325,31 @@ body {
   margin-left: 2vw;
   margin-top: 25px;
 }
-
-.nav-bar___list {
+.nav-bar___container .nav-bar___list {
   display: flex;
   flex-direction: row;
   list-style-type: none;
   margin-right: 20px;
   padding: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 8px;
 }
-.nav-bar___list li {
+.nav-bar___container .nav-bar___list li {
   margin-right: 10px;
+}
+.nav-bar___container .nav-bar___list .navbar-item {
+  border: 1px solid black;
+  width: 80%;
+  padding: 5px 10px;
+  text-align: center;
+}
+.nav-bar___container .nav-bar___list .navbar-item a {
+  color: black;
+  text-decoration: none;
+}
+.nav-bar___container .nav-bar___list .navbar-item:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
 }
 
 .public-events___container {

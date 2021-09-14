@@ -147,6 +147,13 @@ router.post("/show/:id/attend", async (req, res, next) => {
     try {
         const eventToAttend = await Event.findById(req.params.id);
         const attendingUser = await User.findById(req.session.currentUser.id);
+
+        //if the user exists in the event.guests, dont let them sign up
+        for(person in eventToAttend.guests){
+            if(attendingUser.username == eventToAttend.guests[person].username){
+                return res.render("events/attendSuccess", {msg: "Already signed up!"})
+            }
+        }
         
         eventToAttend.guests.push({
             username: attendingUser.username,
@@ -161,7 +168,7 @@ router.post("/show/:id/attend", async (req, res, next) => {
         });
         attendingUser.save();
 
-        return res.render("events/attendSuccess");
+        return res.render("events/attendSuccess", {msg: "Success, enjoy the party!"});
     } catch(e){
         console.log(e);
         res.send(e);

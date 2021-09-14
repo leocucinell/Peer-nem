@@ -6,6 +6,19 @@ const { User } = require("../models");
 const { geoCode } = require("../apis"); //geoCode(params);
 
 /* SECTION: Middleware */
+function fieldCheck(req, res, next){
+    for(key in req.body){
+        if(!req.body[key]){
+            //check which URL sent the req && respond accordingly
+            if(req.path == "/login"){
+                return res.render("auth/login", { err: "Please fill out all fields or create an account" });
+            } else if (req.path == "/register"){
+
+            }
+        }
+    }
+    return next();
+}
 
 /* SECTION: routes */
 //GET register/login => account
@@ -20,7 +33,7 @@ router.get("/register", (req, res, next) => {
 });
 
 //POST register
-router.post("/register", async (req, res, next) => {
+router.post("/register", fieldCheck, async (req, res, next) => {
     try {
         //if user exists, tell user and stay on splash page
         const foundUser = await User.exists({$or:[{email:req.body.email},{username:req.body.username}]});
@@ -73,7 +86,7 @@ router.get("/login", (req, res, next) => {
 });
 
 //POST login
-router.post("/login", async (req, res, next) => {
+router.post("/login", fieldCheck, async (req, res, next) => {
     //try/catch
     try{
         //check if user exist

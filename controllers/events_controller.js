@@ -1,6 +1,5 @@
 /* SECTION: Modules */
 const express = require("express");
-const mongoose = require("mongoose");
 const router = express.Router()
 const { Event, User } = require("../models");
 const { geoCode, distanceCheck, parseAddress, buildAddress } = require("../apis");
@@ -117,7 +116,6 @@ router.post("/create", async (req, res, next) => {
                 longitude: inputLocation.longitude,
                 address: inputLocation.address
             }
-            console.log(newEvent);
 
             const createdEvent = await Event.create(newEvent);
             res.redirect(`/main/show/${createdEvent.id}`)
@@ -184,7 +182,6 @@ router.get("/edit/:id", async (req, res, next) => {
     //send it to the update form & place the values in ejs
     try{
         const eventInfo = await Event.findById(req.params.id);
-        console.log(eventInfo);
         const address = parseAddress(eventInfo.address);
 
         return res.render("events/edit", {

@@ -80,6 +80,16 @@
                 }
                 p{
                     font-size: 1.2rem;
+                    margin-bottom: 2px;
+                }
+                #event-description{
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+                #event-time{
+                    margin-top: 0;
+                    margin-bottom: 0;
                 }
             }
         }

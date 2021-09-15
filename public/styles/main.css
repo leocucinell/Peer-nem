@@ -468,16 +468,30 @@ body {
 }
 .main-page___container .public-events___container .event-card .event-description p {
   font-size: 1.2rem;
+  margin-bottom: 2px;
+}
+.main-page___container .public-events___container .event-card .event-description #event-description {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.main-page___container .public-events___container .event-card .event-description #event-time {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .create-form___container {
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
-  height: 100%;
+  margin-top: 10vh;
   background-repeat: no-repeat;
   background-size: cover;
+}
+@media (max-height: 900px) {
+  .create-form___container {
+    margin-top: 2vh;
+  }
 }
 .create-form___container form {
   background-color: rgba(238, 238, 238, 0.9);

@@ -110,7 +110,7 @@ router.post("/create", async (req, res, next) => {
                 description: req.body.description,
                 imageAddress: req.body.image,
                 admin: req.session.currentUser.id,
-                public: req.body.access == "on" ? true : false,
+                // public: req.body.access == "on" ? true : false,
                 latitude: inputLocation.latitude,
                 longitude: inputLocation.longitude,
                 address: inputLocation.address

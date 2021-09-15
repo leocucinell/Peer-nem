@@ -4,13 +4,12 @@
     height: 100vh;
     
     .page-title___container{
-        width: 90vw;
         border-radius: 5px;
         border: 1px solid black;
         -webkit-box-shadow: 5px 7px 10px -4px #000000; 
         box-shadow: 5px 7px 10px -4px #000000;
         background-color: $Platinum;
-        margin: 15px 40px 8px 76px;
+        margin: 15px 10vw 8px 10vw;
         padding-left: 20px;
         display: flex;
         flex-direction: row;

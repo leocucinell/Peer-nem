@@ -2,6 +2,11 @@
 
 <%- include("../partials/navbar") %>
 <main class="edit-profile___container">
+    <%if(err){%>
+        <div class="err-container">
+            <h1><%= err %></h1>
+        </div>
+    <%}%>
     <form class="edit-profile___form" action="/main/profile/edit/<%= data._id %>?_method=PUT" method="POST">
         <h2>User Info:</h2>
         <input class="edit-input" name="username" placeholder="Username" type="text" value="<%= data.username %>">

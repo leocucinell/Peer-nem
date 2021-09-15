@@ -2,6 +2,12 @@
 
 <%- include("../partials/navbar") %>
 <main class="edit-form___container">
+    <%if(err){%>
+        <div class="err-container">
+            <h1><%= err %></h1>
+        </div>
+    <%}%>
+    
     <h1>Edit event details:</h1>
     <form class="edit-form" method="POST" action="/main/edit/<%= event._id %>?_method=PUT">
         <Label for="title-label">Title:</Label>

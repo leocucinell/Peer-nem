@@ -2,7 +2,9 @@
 
 .create-form___container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100%;
     margin-top: 10vh;
     background-repeat: no-repeat;
@@ -13,7 +15,7 @@
     }
 
     form {
-        background-color: rgba(238, 238, 238, 0.9);;
+        background-color: $Platinum;
         padding: 15px;
         display: flex;
         flex-direction: column;

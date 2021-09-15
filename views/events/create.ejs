@@ -2,6 +2,12 @@
 
 <%- include("../partials/navbar") %>
 <main class="create-form___container">
+    <%if(err){%>
+        <div class="err-container">
+            <h1><%= err %></h1>
+        </div>
+    <%}%>
+    
     <form method="POST" action="/main/create">
         <h2>Create an event:</h2>
         <Label for="title-label">Title:</Label>

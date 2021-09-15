@@ -323,9 +323,8 @@ body {
 .edit-profile___container {
   height: 100%;
   display: flex;
-  flex-direction: row;
-  height: 400px;
-  margin-top: 20vh;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   padding: 5px;
 }
@@ -505,7 +504,9 @@ body {
 
 .create-form___container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
   margin-top: 10vh;
   background-repeat: no-repeat;
@@ -517,7 +518,7 @@ body {
   }
 }
 .create-form___container form {
-  background-color: rgba(238, 238, 238, 0.9);
+  background-color: #e5eaed;
   padding: 15px;
   display: flex;
   flex-direction: column;

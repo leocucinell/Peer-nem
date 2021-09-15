@@ -5,6 +5,27 @@ const { Event, User } = require("../models");
 const { geoCode, distanceCheck, parseAddress, buildAddress } = require("../apis");
 
 /* SECTION: Middleware */
+const formCheck = async function(req, res, next){
+    for(key in req.body){
+        if(!req.body[key] || req.body[key] == ""){
+            //check which req.path is being sent
+            if(req.session.url == "/main/create"){
+                return res.render("events/create", {err: "Please fill out all fields"});
+
+            } else if(req.session.url == "/main/profile/edit"){
+                const userObj = await User.findById(req.session.currentUser.id);
+                const address = parseAddress(userObj.address);
+                return res.render("auth/editProfile", {err: "please fill out all fields", data: userObj, address})
+
+            } else if(req.session.url == "/main/edit"){
+                const eventInfo = await Event.findById(req.params.id);
+                const address = parseAddress(eventInfo.address);
+                return res.render("events/edit", {err: "Please fill out all fields", event: eventInfo, eventAddress: address})
+            }
+        }
+    }
+    return next();
+}
 
 /* SECTION: routes -> /main */
 //GET main page
@@ -17,6 +38,7 @@ router.get("/", async (req, res, next) => {
             lng: userObj.longitude
         }
         const nearMe = distanceCheck(allEvents, userCoords);
+        req.session.url = "/main"
         return res.render("events/main", {allEvents: nearMe});
     } catch(err) {
         console.log(err)
@@ -34,6 +56,7 @@ router.get("/profile", async (req, res, next) => {
         //get the events the user is attending
         const attendingEvents = userObj.attending;
         //send info to profile page
+        req.session.url = "/main/profile"
         res.render("auth/profile", {
             adminEvents,
             attendingEvents,
@@ -51,9 +74,11 @@ router.get("/profile/edit/:id", async (req, res, next) => {
     try{
         const userObj = await User.findById(req.session.currentUser.id);
         const address = parseAddress(userObj.address);
+        req.session.url = "/main/profile/edit"
         res.render("auth/editProfile", { 
             data: userObj,
-            address: address
+            address: address,
+            err: "",
         });
     } catch(e) {
         console.log(e);
@@ -62,7 +87,7 @@ router.get("/profile/edit/:id", async (req, res, next) => {
 });
 
 //PUT UpdateProfile route
-router.put("/profile/edit/:id", async (req, res, next) => {
+router.put("/profile/edit/:id", formCheck,  async (req, res, next) => {
     try{
         const addressFields = {
             addressNum: req.body.addressNum,
@@ -92,11 +117,12 @@ router.put("/profile/edit/:id", async (req, res, next) => {
 
 //GET Create event page
 router.get("/create", (req, res, next) => {
-    res.render("events/create");
+    req.session.url = "/main/create"
+    res.render("events/create", {err: ""});
 });
 
 //POST Create event
-router.post("/create", async (req, res, next) => {
+router.post("/create",formCheck,  async (req, res, next) => {
     try{
         //check if there is a user session
         if(req.session.currentUser){
@@ -136,6 +162,7 @@ router.get("/show/:id", async (req, res, next) => {
     try {
         const clickedEvent = await Event.findById(req.params.id);
         const adminCreator = await User.findById(clickedEvent.admin);
+        req.session.url = "/main/show"
         res.render("events/show", {event: clickedEvent, eventAdmin: adminCreator});
     } catch(err) {
         console.log(err)
@@ -144,7 +171,7 @@ router.get("/show/:id", async (req, res, next) => {
 });
 
 //Post to the attend route
-router.post("/show/:id/attend", async (req, res, next) => {
+router.post("/show/:id/attend",formCheck,  async (req, res, next) => {
     try {
         const eventToAttend = await Event.findById(req.params.id);
         const attendingUser = await User.findById(req.session.currentUser.id);
@@ -183,10 +210,11 @@ router.get("/edit/:id", async (req, res, next) => {
     try{
         const eventInfo = await Event.findById(req.params.id);
         const address = parseAddress(eventInfo.address);
-
+        req.session.url = "/main/edit"
         return res.render("events/edit", {
             event: eventInfo,
-            eventAddress: address
+            eventAddress: address,
+            err: ""
         });
     } catch(err) {
         console.log(err);
@@ -195,7 +223,7 @@ router.get("/edit/:id", async (req, res, next) => {
 })
 
 //PUT Edit event route
-router.put("/edit/:id", async (req, res, next) => {
+router.put("/edit/:id",formCheck,  async (req, res, next) => {
     try{
 
         const addressFields = {

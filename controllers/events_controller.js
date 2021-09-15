@@ -83,7 +83,7 @@ router.put("/profile/edit/:id", async (req, res, next) => {
                 new: true,
             }
         );
-        return res.redirect(`/main/profile/${updatedUser.id}`);
+        return res.redirect(`/main/profile`);
     } catch(e){
         console.log(e);
         res.send(e);

@@ -255,18 +255,26 @@ body {
   align-items: center;
   justify-content: center;
   gap: 15px;
-  margin-top: 25px;
+  margin-top: 15px;
 }
 .user-profile___container .user-info .user-options .option-btn {
-  border: 1px solid black;
-  width: 80%;
-  padding: 5px 10px;
-  color: black;
+  background-color: #79c1d1;
+  border-radius: 10px;
+  padding: 8px 10px;
   text-align: center;
+  border: 1px solid #282828;
+  -webkit-box-shadow: 5px 7px 10px -4px #000000;
+  box-shadow: 5px 7px 10px -4px #000000;
+  color: #282828;
+  text-decoration: none;
 }
-.user-profile___container .user-info .user-options .option-btn:hover {
-  cursor: pointer;
-  background-color: whitesmoke;
+.user-profile___container .user-info .user-options .option-btn:active {
+  -webkit-box-shadow: inset 5px 7px 10px -4px #000000;
+  box-shadow: inset 5px 7px 10px -4px #000000;
+  background-color: #efd352;
+}
+.user-profile___container .user-info .user-options #option-update {
+  margin-bottom: 15px;
 }
 .user-profile___container .events-list {
   width: 30vw;
@@ -319,10 +327,12 @@ body {
   height: 400px;
   margin-top: 20vh;
   justify-content: center;
+  padding: 5px;
 }
 .edit-profile___container .edit-profile___form {
   display: flex;
   flex-direction: column;
+  background-color: #e5eaed;
   border: 1px solid black;
   border-radius: 5px;
   -webkit-box-shadow: 5px 7px 10px -4px #000000;
@@ -343,9 +353,18 @@ body {
 }
 .edit-profile___container .edit-profile___form #submit-btn {
   margin-top: 15px;
-  margin-bottom: 10px;
-  padding: 5px;
-  height: 40px;
+  background-color: #79c1d1;
+  border-radius: 10px;
+  padding: 8px 10px;
+  text-align: center;
+  border: 1px solid #282828;
+  -webkit-box-shadow: 5px 7px 10px -4px #000000;
+  box-shadow: 5px 7px 10px -4px #000000;
+}
+.edit-profile___container .edit-profile___form #submit-btn:active {
+  -webkit-box-shadow: inset 5px 7px 10px -4px #000000;
+  box-shadow: inset 5px 7px 10px -4px #000000;
+  background-color: #efd352;
 }
 
 .nav-bar___container {
@@ -373,18 +392,22 @@ body {
   margin-right: 10px;
 }
 .nav-bar___container .nav-bar___list .navbar-item {
-  border: 1px solid black;
-  width: 80%;
-  padding: 5px 10px;
+  background-color: #79c1d1;
+  border-radius: 10px;
+  padding: 8px 10px;
   text-align: center;
+  border: 1px solid #282828;
+  -webkit-box-shadow: 5px 7px 10px -4px #000000;
+  box-shadow: 5px 7px 10px -4px #000000;
 }
 .nav-bar___container .nav-bar___list .navbar-item a {
-  color: black;
+  color: #282828;
   text-decoration: none;
 }
-.nav-bar___container .nav-bar___list .navbar-item:hover {
-  cursor: pointer;
-  transform: translateY(-3px);
+.nav-bar___container .nav-bar___list .navbar-item:active {
+  -webkit-box-shadow: inset 5px 7px 10px -4px #000000;
+  box-shadow: inset 5px 7px 10px -4px #000000;
+  background-color: #efd352;
 }
 
 .main-page___container {
@@ -551,6 +574,21 @@ body {
 .show-page___container p {
   margin-top: 2px;
   margin-bottom: 20px;
+}
+.show-page___container .choices-container .attend-form input {
+  background-color: #79c1d1;
+  border-radius: 10px;
+  padding: 8px 10px;
+  text-align: center;
+  border: 1px solid #282828;
+  -webkit-box-shadow: 5px 7px 10px -4px #000000;
+  box-shadow: 5px 7px 10px -4px #000000;
+  margin-bottom: 10px;
+}
+.show-page___container .choices-container .attend-form input:active {
+  -webkit-box-shadow: inset 5px 7px 10px -4px #000000;
+  box-shadow: inset 5px 7px 10px -4px #000000;
+  background-color: #efd352;
 }
 .show-page___container #admin-edit {
   margin-bottom: 15px;

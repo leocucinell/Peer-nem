@@ -539,6 +539,20 @@ body {
 .create-form___container form .addres-form {
   margin-bottom: 5px;
 }
+.create-form___container form #create-btn {
+  background-color: #79c1d1;
+  border-radius: 10px;
+  padding: 8px 10px;
+  text-align: center;
+  border: 1px solid #282828;
+  -webkit-box-shadow: 5px 7px 10px -4px #000000;
+  box-shadow: 5px 7px 10px -4px #000000;
+}
+.create-form___container form #create-btn:active {
+  -webkit-box-shadow: inset 5px 7px 10px -4px #000000;
+  box-shadow: inset 5px 7px 10px -4px #000000;
+  background-color: #efd352;
+}
 
 .show-page___container {
   padding: 8px 30px;

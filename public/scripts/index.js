@@ -12,4 +12,4 @@ function onPageLoad(){
     setBackgroundImage()
 }
 
-onPageLoad();
+// onPageLoad();  ADD BACK IF BACKGROUND SVG FAILS

@@ -29,7 +29,7 @@ router.get("/", (req, res, next) => {
 
 //GET register page
 router.get("/register", (req, res, next) => {
-    res.render("auth/register");
+    res.render("auth/register", {err: ""});
 });
 
 //POST register
@@ -40,7 +40,7 @@ router.post("/register", fieldCheck, async (req, res, next) => {
         if(foundUser){
             //MAKE A ROUTE SPECIFICALLY FOR LOGGING IN / REGISTERING FOR ERROR HANDLING PURPOSES
             console.log("User already exists");
-            return res.render("auth/login");
+            return res.render("auth/login", {err: "User already exists"});
         }
 
         //if user does not exist, salt&hash the password and [redirect to login splash || go to main page]
@@ -51,13 +51,6 @@ router.post("/register", fieldCheck, async (req, res, next) => {
         //create a location object based on the req.body.home
         const {addressNum, streetName, city, state } = req.body
         const inputLocation = await geoCode(addressNum, streetName, city, state); // -> {lat, lng, address}
-        //if the location already exists, grab the id of that location and use that for the user
-        // const foundLocation = await Location.exists({$and:[{latitude:inputLocation.latitude}, {longitude: inputLocation.longitude}]})
-        // if(foundLocation){
-        //     homeBase = await Location.findOne({$and:[{latitude:inputLocation.latitude}, {longitude: inputLocation.longitude}]});
-        // } else {
-        //     homeBase = await Location.create(inputLocation);
-        // }
 
         //create the new user object to save to mongoDB
         const newUser = {
@@ -72,7 +65,7 @@ router.post("/register", fieldCheck, async (req, res, next) => {
         const createdUser = await User.create(newUser);
 
         //return to login
-        return res.render('auth/login');
+        return res.render('auth/login', {err: ""});
 
     } catch(error) {
         console.log(error);
@@ -82,7 +75,7 @@ router.post("/register", fieldCheck, async (req, res, next) => {
 
 //GET login
 router.get("/login", (req, res, next) => {
-    return res.render("auth/login");
+    return res.render("auth/login", {err: ""});
 });
 
 //POST login
@@ -93,13 +86,13 @@ router.post("/login", fieldCheck, async (req, res, next) => {
         const foundUser = await User.findOne({username: req.body.username});
         if(!foundUser){
             console.log(`user does not exist`)
-            return res.redirect('/register')
+            return res.render("auth/register", {err: "User does not exist"})
         }
 
         //check if the passwords match
         const matchedPassword = await bcrypt.compare(req.body.password,foundUser.password)
         if(!matchedPassword){
-            return res.render("auth/login");
+            return res.render("auth/login", {err: "Invalid username/password"});
         }
 
         //create the session for the user during the app

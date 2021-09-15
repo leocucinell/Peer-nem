@@ -110,11 +110,14 @@ router.post("/create", async (req, res, next) => {
                 description: req.body.description,
                 imageAddress: req.body.image,
                 admin: req.session.currentUser.id,
+                date: req.body.date,
+                time: req.body.time,
                 // public: req.body.access == "on" ? true : false,
                 latitude: inputLocation.latitude,
                 longitude: inputLocation.longitude,
                 address: inputLocation.address
             }
+            console.log(newEvent);
 
             const createdEvent = await Event.create(newEvent);
             res.redirect(`/main/show/${createdEvent.id}`)
@@ -181,6 +184,7 @@ router.get("/edit/:id", async (req, res, next) => {
     //send it to the update form & place the values in ejs
     try{
         const eventInfo = await Event.findById(req.params.id);
+        console.log(eventInfo);
         const address = parseAddress(eventInfo.address);
 
         return res.render("events/edit", {

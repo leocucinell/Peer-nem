@@ -26,6 +26,14 @@ const eventSchema = new mongoose.Schema({
     // public: {
     //     type: Boolean
     // },
+    date: {
+        type: String,
+        required: [true, "Please enter a date for the event"]
+    },
+    time: {
+        type: String,
+        required: [true, "Please enter a time for the event"]
+    },
     latitude: {
         type: Number,
         required: [true, "please add the latitude for the event"]

@@ -22,20 +22,24 @@
         <div class="my-events">
             <h2>My events</h2>
             <% adminEvents.forEach(event => { %>
-                <div class="my-event___card">
-                    <img src="<%= event.imageAddress %>" alt="event photo">
-                    <p><%= event.title %></p>
-                </div>
+                <a class="my-event___wrapper" href="/main/show/<%= event.id %>"">
+                    <div class="my-event___card">
+                        <img src="<%= event.imageAddress %>" alt="event photo">
+                        <p><%= event.title %></p>
+                    </div>
+                </a>
             <%})%>
         </div>
     
         <div class="attending-events">
             <h2>Attending Events</h2>
             <% attendingEvents.forEach(event => { %>
-                <div class="my-event___card">
-                    <img src="<%= event.image %>" alt="event photo">
-                    <p><%= event.title %></p>
-                </div>
+                <a class="my-event___wrapper" href="/main/show/<%= event.id %>"">
+                    <div class="my-event___card">
+                        <img src="<%= event.image %>" alt="event photo">
+                        <p><%= event.title %></p>
+                    </div>
+                </a>
             <%})%>
         </div>
     </div>

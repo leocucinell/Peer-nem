@@ -1,3 +1,4 @@
+@use "../variables" as *;
 
 .user-profile___container{
     display: flex;
@@ -14,6 +15,7 @@
     .user-info{
         margin-top: 70px;
         border: 1px solid black;
+        background-color: $Platinum;
         border-radius: 5px;
         -webkit-box-shadow: 5px 7px 10px -4px #000000; 
         box-shadow: 5px 7px 10px -4px #000000;
@@ -35,6 +37,10 @@
             #user-address{
                 margin-top: 5px;
             }
+        }
+
+        hr{
+            color: $Dark-Blue;
         }
 
         .user-options{
@@ -64,11 +70,16 @@
         width: 30vw;
 
         .my-events{
-
+            padding: 15px;
         }
 
         .attending-events{
+            padding: 15px;
+        }
 
+        .my-event___wrapper{
+            color: $Black;
+            text-decoration: none;
         }
 
         .my-event___card{
@@ -76,6 +87,7 @@
             flex-direction: row;
             gap: 15px;
             border: 1px solid black;
+            background-color: $Platinum;
             border-radius: 5px;
             -webkit-box-shadow: 5px 7px 10px -4px #000000; 
             box-shadow: 5px 7px 10px -4px #000000;
@@ -87,6 +99,7 @@
                 height: 100px;
                 object-fit: cover;
             }
+
             p{
                 font-size: 1.8rem;;
             }

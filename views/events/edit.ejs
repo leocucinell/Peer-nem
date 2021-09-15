@@ -1,11 +1,19 @@
 <%- include("../partials/header") %>
 
 <%- include("../partials/navbar") %>
-<main>
-    <form method="POST" action="/main/edit/<%= event._id %>?_method=PUT">
+<main class="edit-form___container">
+    <h1>Edit event details:</h1>
+    <form class="edit-form" method="POST" action="/main/edit/<%= event._id %>?_method=PUT">
+        <Label for="title-label">Title:</Label>
         <input value="<%= event.title %>" placeholder="event title" name="title" type="text">
-        <input value="<%= event.description %>" placeholder="description" name="description" type="text">
+
+        <Label for="description-label">Description:</Label>
+        <textarea id="description-label" placeholder="description" name="description"><%= event.description %></textarea>
+
+        <Label for="image-label">Image:</Label>
         <input value="<%= event.imageAddress %>" placeholder="image address" name="image" type="text">
+
+        <label for="access">Public</label>
         <input value="<%= event.access %>" name="access" type="checkbox">
     
         <h3>Location:</h3>
@@ -17,8 +25,9 @@
         <input type="submit" value="Update">
     </form>
 
-    <form method="POST" action="/main/edit/<%= event._id %>?_method=DELETE">
-        <input type="submit" value="Delete?">
+    <form class="delete-form" method="POST" action="/main/edit/<%= event._id %>?_method=DELETE">
+        <h3>Delete event?</h3>
+        <input type="submit" value="Delete">
     </form>
 </main>
 

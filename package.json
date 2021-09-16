@@ -4,6 +4,7 @@
   "description": "A nem stack application for connecting people to places",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -55,11 +55,22 @@ router.get("/profile", async (req, res, next) => {
         const adminEvents = await Event.find({admin: userObj._id});
         //get the events the user is attending
         const attendingEvents = userObj.attending;
+        let attendCheck = [];
+        //check if the event ID exists in the eventsDB, 
+        for(let i = 0; i < attendingEvents.length; i++){
+            //console.log(attendingEvents[i].eventId)
+            const isInEvents = await Event.exists({_id: attendingEvents[i].eventId});
+            if(isInEvents){
+                attendCheck.push(attendingEvents[i]);
+            }
+        }
+            // if it does, push to another heap
+            // if not, dont push 
         //send info to profile page
         req.session.url = "/main/profile"
         res.render("auth/profile", {
             adminEvents,
-            attendingEvents,
+            attendingEvents: attendCheck,
             userObj
         });
 

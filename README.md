@@ -79,3 +79,6 @@ Create a map view to show all the events as markers on the global map
 
 ## Wire frame:
 ![wire frame image](./public/images/wireFrame.png)
+
+## Credit:
+Cool svg background: https://coolbackgrounds.io/

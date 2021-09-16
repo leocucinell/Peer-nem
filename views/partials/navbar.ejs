@@ -1,0 +1,16 @@
+<nav class="nav-bar___container">
+    <!-- replace this with a logo later -->
+    <h1>Peer</h2>
+    
+    <% if(user) {%>
+        <ul class="nav-bar___list">
+            <li class="navbar-item"><a href="/main">Home</a></li>
+            <li class="navbar-item"><a href="/main/profile">Profile</a></li>
+            <li class="navbar-item"><a href="/logout">Logout</a></li>
+        </ul>
+    <% } else { %>
+        <ul class="nav-bar___list">
+            <li class="navbar-item"><a href="/">main</a></li>
+        </ul>
+    <% } %>
+</nav>

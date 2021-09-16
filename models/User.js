@@ -15,11 +15,27 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please add a password"]
     },
-    //add home here once created location model
+    latitude: {
+        type: Number,
+        required: [true, "please add the latitude for the event"]
+    },
+    longitude: {
+        type: Number,
+        required: [true, "please add the longitude for the event"]
+    },
+    address: {
+        type: String,
+        required: [true, "please add an address for the event"]
+    },
+    attending: [{
+        title: String,
+        image: String,
+        eventId: mongoose.Types.ObjectId
+    }],
 }, {timestamps: true});
 
 /* SECTION: User model */
-const User = mongoose.model(userSchema);
+const User = mongoose.model("User", userSchema);
 
 /* SECTION: export */
 module.exports = User;

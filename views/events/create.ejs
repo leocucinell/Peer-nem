@@ -1,0 +1,39 @@
+<%- include("../partials/header") %>
+
+<%- include("../partials/navbar") %>
+<main class="create-form___container">
+    <%if(err){%>
+        <div class="err-container">
+            <h1><%= err %></h1>
+        </div>
+    <%}%>
+    
+    <form method="POST" action="/main/create">
+        <h2>Create an event:</h2>
+        <Label for="title-label">Title:</Label>
+        <input id="title-label" placeholder="event title" name="title" type="text">
+
+        <Label for="description-label">Description:</Label>
+        <textarea id="description-label" placeholder="description" name="description"></textarea>
+
+        <Label for="image-label">Image:</Label>
+        <input id="image-label" placeholder="image address" name="image" type="text">
+
+        <!-- <label for="access">Public</label>
+        <input id="access" name="access" type="checkbox"> -->
+        <h3>Date:</h3>
+        <input class="addres-form" name="date" type="date">
+        <input class="addres-form" name="time" type="time">
+    
+        <h3>Address:</h3>
+        <input class="addres-form" placeholder="address number" name="addressNum" type="number">
+        <input class="addres-form" placeholder="street name" name="streetName" type="text">
+        <input class="addres-form" placeholder="city" name="city" type="text">
+        <input class="addres-form" placeholder="state: OR, CA, NV, ..." name="state" type="text">
+    
+        <input id="create-btn" type="submit" value="Create">
+    </form>
+</main>
+
+
+<%- include("../partials/footer") %>

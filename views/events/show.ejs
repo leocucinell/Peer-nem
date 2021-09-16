@@ -1,0 +1,76 @@
+<%- include("../partials/header") %>
+
+<%- include("../partials/navbar") %>
+<!-- 
+    show includes: 
+        -navbar
+        -all information reguarding the event
+ -->
+ <script>
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: parseInt(document.getElementById("hLat").innerHTML), lng: parseInt(document.getElementById("hLng").innerHTML) },
+        zoom: 12,
+        });
+        new google.maps.Marker({
+        position: { lat: parseInt(document.getElementById("hLat").innerHTML), lng: parseInt(document.getElementById("hLng").innerHTML) },
+        map: map,
+        title: "Event Location"
+        });
+    }
+ </script>
+
+
+ <main class="show-page___container">
+    <%if(event){%>
+        <div class="image-container">
+            <img alt="event photo" src="<%= event.imageAddress %>">
+            <div id="image-gradient">
+                <h1><%= event.title %></h1>
+            </div>
+        </div>
+        
+        <div class="details-container">
+            <h3>Details:</h3>
+            <p><%= event.description %></p>
+        </div>
+        
+        <div class="choices-container">
+            <% if(user.id === eventAdmin._id.toString()){ %>
+                <h4>Admin Settings: <a id="admin-edit" href="/main/edit/<%= event._id %>">edit event</a></h4>
+            <%} else {%>
+                <form class="attend-form" action="<%= event._id %>/attend" method="POST" class="will-attend___form">
+                    <label>Click here to sign up: </label>
+                    <input type="submit" value="sign up" id="sign-up___button">
+                </form>
+            <%}%>
+        </div>
+        
+        <div class="guest-list">
+            <h3>People attending: <%= event.guests.length %></h3>
+        </div>
+
+        <div class="map-container">
+            <div style="height: 500px; width: 100%; overflow: visible;" id="map"></div>
+            <div id="hLat" style="visibility: hidden;"><%= event.latitude %></div>
+            <div id="hLng" style="visibility: hidden;"><%= event.longitude %></div>
+        </div>
+        
+
+        
+    <%}%>
+ </main>
+
+
+ <script
+      src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_KEY %>&callback=initMap&libraries=&v=weekly"
+      async
+      defer
+>
+google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.trigger(map, 'resize');
+document.getElementById("map").style.overflow = "visible";
+</script>
+
+
+<%- include("../partials/footer") %>

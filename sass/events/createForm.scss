@@ -1,0 +1,61 @@
+@use "../variables" as *;
+
+.create-form___container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media (max-height: 900px) {
+        margin-top: 2vh;
+    }
+
+    form {
+        background-color: $Platinum;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        border: 1px solid $Black;
+        border-radius: 5px;
+        -webkit-box-shadow: 5px 7px 10px -4px #000000; 
+        box-shadow: 5px 7px 10px -4px #000000;
+
+        label {
+            margin-top: 5px;
+        }
+
+        input{
+            padding: 8px;
+        }
+
+        textarea{
+            padding: 8px;
+        }
+
+        .addres-form{
+            margin-bottom: 5px;
+        }
+
+        #create-btn{
+            background-color: $Mid-Blue;
+            border-radius: 10px;
+            padding: 8px 10px;
+            text-align: center;
+            border: 1px solid $Black;
+            -webkit-box-shadow: 5px 7px 10px -4px #000000; 
+            box-shadow: 5px 7px 10px -4px #000000;
+
+            &:active{
+                -webkit-box-shadow: inset 5px 7px 10px -4px #000000; 
+                box-shadow: inset 5px 7px 10px -4px #000000;
+
+                background-color: $Yellow;
+            }
+        }
+    }
+}

@@ -9,9 +9,7 @@ const connectionString = process.env.MONGO_URI || 'mongodb://localhost:27017/pee
 
 mongoose.connect(connectionString, {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
-    useFindAndModify: false,
 });
 
 //test connection status

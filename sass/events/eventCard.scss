@@ -1,0 +1,97 @@
+@use "../variables" as *;
+
+.main-page___container{
+    height: 100vh;
+    
+    .page-title___container{
+        border-radius: 5px;
+        border: 1px solid black;
+        -webkit-box-shadow: 5px 7px 10px -4px #000000; 
+        box-shadow: 5px 7px 10px -4px #000000;
+        background-color: $Platinum;
+        margin: 15px 10vw 8px 10vw;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        a{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+
+            h3{
+                margin-right: 20px;
+                color: $Dark-Blue;
+                &:hover{
+                    color: $Mid-Blue;
+                }
+            }
+        }
+    }
+
+
+    .public-events___container{
+        margin: 30px 40px 8px 40px;
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        place-items: center;
+        gap: 20px;
+
+        @media (max-width: 1150px){
+            grid-template-columns: repeat(3, auto);
+        }
+        @media (max-width: 900px){
+            grid-template-columns: repeat(2, auto);
+        }
+        @media (max-width: 630px){
+            grid-template-columns: repeat(1, auto);
+        }
+    
+        .anchor-box{
+            -webkit-box-shadow: 5px 7px 10px -4px #000000; 
+            box-shadow: 5px 7px 10px -4px #000000;
+            text-decoration: none;
+            color: $Black;
+            margin-bottom: 8px;
+        }
+        .event-card{
+            height: 300px;
+            width: 250px;
+            border: 1px solid $Black;
+            border-radius: 5px;
+            background: $Platinum;
+
+            img{
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+            }
+            .event-description{
+                padding: 8px;
+
+                h1{
+                    margin-top: 5px;
+                    margin-bottom: 0;
+                }
+                hr{
+                    color: $Mid-Blue;
+                }
+                p{
+                    font-size: 1.2rem;
+                    margin-bottom: 2px;
+                }
+                #event-description{
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+                #event-time{
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

@@ -1,8 +1,16 @@
+/**
+ * objective: Find the radians
+ * returns: Float (rads)
+ */
 function deg2rad(deg) {
     return deg * (Math.PI/180)
 }
 
 //The haversine formula allows the haversine of θ (that is, hav(θ)) to be computed directly from the latitude (represented by φ) and longitude (represented by λ) of the two points:
+/**
+ * objective: compute the distance in miles between two coordinates using haversine formula,
+ * returns: Boolean specifying within distance set in if statement
+ */
 function distanceCalculator(eLat, eLng, hLat, hLng){
     //Compute the distance between the two coordinates, 
     //if it is within range, return true, else return false
@@ -22,6 +30,10 @@ function distanceCalculator(eLat, eLng, hLat, hLng){
     }
 }
 
+/**
+ * objective: filters out the events meeting distance qulifications,
+ * returns: list of events
+ */
 const distanceCheck = (events, homeBase) => {
     let withinRange = []
     events.forEach(event => {

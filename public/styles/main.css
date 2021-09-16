@@ -43,6 +43,19 @@ body {
   overflow: hidden;
 }
 
+.form-submit___button {
+  background-color: #79c1d1;
+  border-radius: 10px;
+  padding: 8px 10px;
+  text-align: center;
+  border: 1px solid #282828;
+}
+.form-submit___button:active {
+  -webkit-box-shadow: inset 5px 7px 10px -4px #000000;
+  box-shadow: inset 5px 7px 10px -4px #000000;
+  background-color: #efd352;
+}
+
 .form-slides {
   display: flex;
   overflow-x: hidden;
@@ -651,17 +664,21 @@ body {
 .attend-success___container .attend-success___card hr {
   margin-bottom: 20px;
 }
-.attend-success___container .attend-success___card a {
-  margin-top: 8px;
-  border: 1px solid #282828;
-  width: 80%;
-  padding: 5px 10px;
-  color: #282828;
+.attend-success___container .attend-success___card #return-button {
+  background-color: #79c1d1;
+  border-radius: 10px;
+  padding: 8px 10px;
   text-align: center;
+  border: 1px solid #282828;
+  -webkit-box-shadow: 5px 7px 10px -4px #000000;
+  box-shadow: 5px 7px 10px -4px #000000;
+  color: #282828;
+  text-decoration: none;
 }
-.attend-success___container .attend-success___card a:hover {
-  cursor: pointer;
-  background-color: #e5eaed;
+.attend-success___container .attend-success___card #return-button:active {
+  -webkit-box-shadow: inset 5px 7px 10px -4px #000000;
+  box-shadow: inset 5px 7px 10px -4px #000000;
+  background-color: #efd352;
 }
 
 .edit-form___container {

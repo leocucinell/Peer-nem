@@ -172,6 +172,8 @@ router.get("/show/:id", async (req, res, next) => {
     //grab the event the user wants to see
     try {
         const clickedEvent = await Event.findById(req.params.id);
+        console.log(req.params.id);
+        console.log(clickedEvent)
         const adminCreator = await User.findById(clickedEvent.admin);
         req.session.url = "/main/show"
         res.render("events/show", {event: clickedEvent, eventAdmin: adminCreator});
